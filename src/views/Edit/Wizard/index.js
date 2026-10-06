@@ -29,7 +29,7 @@ import Probe from './Probe';
 import License from './License';
 import Metadata from './Metadata';
 
-export default function Wizard(props) {
+export default function Wizard({ restreamer = null }) {
 	const { i18n } = useLingui();
 	const navigate = useNavigate();
 	const { channelid: _channelid } = useParams();
@@ -69,22 +69,22 @@ export default function Wizard(props) {
 	}, [navigate, $invalid]);
 
 	const load = async () => {
-		const channelid = props.restreamer.SelectChannel(_channelid);
+		const channelid = restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
 			setInvalid(true);
 			return;
 		}
 
-		const skills = await props.restreamer.Skills();
+		const skills = await restreamer.Skills();
 		setSkills(skills);
 
-		const config = await props.restreamer.ConfigActive();
+		const config = await restreamer.ConfigActive();
 		setConfig(config);
 
 		setData({
 			...$data,
 			meta: {
-				name: props.restreamer.GetChannel(_channelid).name,
+				name: restreamer.GetChannel(_channelid).name,
 			},
 		});
 
@@ -92,9 +92,9 @@ export default function Wizard(props) {
 	};
 
 	const refreshSkills = async () => {
-		await props.restreamer.RefreshSkills();
+		await restreamer.RefreshSkills();
 
-		const skills = await props.restreamer.Skills();
+		const skills = await restreamer.Skills();
 		setSkills(skills);
 	};
 
@@ -105,7 +105,7 @@ export default function Wizard(props) {
 			status: 'none',
 		});
 
-		let [res, err] = await props.restreamer.Probe(_channelid, source.inputs);
+		let [res, err] = await restreamer.Probe(_channelid, source.inputs);
 		if (err !== null) {
 			res = {
 				streams: [],
@@ -179,23 +179,23 @@ export default function Wizard(props) {
 
 		data.streams = M.createOutputStreams(sources, profiles);
 
-		const [, err] = await props.restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
+		const [, err] = await restreamer.UpsertIngest(_channelid, global, inputs, outputs, control);
 		if (err !== null) {
 			notify.Dispatch('error', 'save:ingest', err.message);
 			return false;
 		}
 
 		// Save the metadata
-		await props.restreamer.SetIngestMetadata(_channelid, data);
+		await restreamer.SetIngestMetadata(_channelid, data);
 
 		// Create update the ingest snapshot process
-		await props.restreamer.UpsertIngestSnapshot(_channelid, control);
+		await restreamer.UpsertIngestSnapshot(_channelid, control);
 
 		// Create/update the player
-		await props.restreamer.UpdatePlayer(_channelid);
+		await restreamer.UpdatePlayer(_channelid);
 
 		// Create/update the playersite
-		await props.restreamer.UpdatePlayersite();
+		await restreamer.UpdatePlayersite();
 
 		notify.Dispatch('success', 'save:ingest', i18n._(t`Main channel saved`));
 
@@ -275,7 +275,7 @@ export default function Wizard(props) {
 							<Typography>{s.name}</Typography>
 						</div>
 					</Button>
-				</Grid>
+				</Grid>,
 			);
 		}
 
@@ -484,7 +484,7 @@ export default function Wizard(props) {
 			decodersList.push(
 				<MenuItem value={c.coder} key={c.coder}>
 					{c.name}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 
@@ -496,7 +496,7 @@ export default function Wizard(props) {
 			encodersList.push(
 				<MenuItem value={c.coder} key={c.coder}>
 					{c.name}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 
@@ -510,7 +510,7 @@ export default function Wizard(props) {
 			streamList.push(
 				<MenuItem value={s.stream} key={s.stream}>
 					{s.width}x{s.height}, {s.codec.toUpperCase()}
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 
@@ -595,7 +595,11 @@ export default function Wizard(props) {
 			let audiotracks = [];
 			let source = null;
 
+			const custom = $profile.custom;
+
 			if (value === 'video') {
+				custom.selected = false;
+
 				for (let s of $sources.video.streams) {
 					if (s.type !== 'audio') {
 						continue;
@@ -607,8 +611,13 @@ export default function Wizard(props) {
 					audiotracks.push(audio);
 				}
 
+				custom.stream = audiotracks.length !== 0 ? audiotracks[0].stream : -1;
+
 				source = null;
 			} else if (value === 'alsa') {
+				custom.selected = true;
+				custom.stream = -2;
+
 				const audio = M.initAudioTrack({});
 				audio.source = 1;
 				audiotracks.push(audio);
@@ -630,6 +639,9 @@ export default function Wizard(props) {
 				});
 				source.inputs = fullSource.func.createInputs(source.settings);
 			} else if (value === 'silence') {
+				custom.selected = true;
+				custom.stream = -2;
+
 				const audio = M.initAudioTrack({});
 				audio.source = 1;
 				audiotracks.push(audio);
@@ -645,6 +657,11 @@ export default function Wizard(props) {
 					sampling: 44100,
 				});
 				source.inputs = fullSource.func.createInputs(source.settings);
+			} else {
+				custom.selected = false;
+				custom.stream = -1;
+
+				source = null;
 			}
 
 			setSources({
@@ -671,7 +688,7 @@ export default function Wizard(props) {
 			streamList.push(
 				<MenuItem value={s.stream} key={s.stream}>
 					{s.codec.toUpperCase()} {s.layout} {s.sampling_hz}Hz
-				</MenuItem>
+				</MenuItem>,
 			);
 		}
 
@@ -686,7 +703,7 @@ export default function Wizard(props) {
 				deviceList.push(
 					<MenuItem key={device.id} value={device.id}>
 						{device.name} ({device.id})
-					</MenuItem>
+					</MenuItem>,
 				);
 			}
 		}
@@ -842,18 +859,18 @@ export default function Wizard(props) {
 
 		return <Error onAbort={handleAbort} onHelp={handleHelp('error')} />;
 	} else if ($step === 'ABORT') {
-		const nchannels = props.restreamer.ListChannels().length;
+		const nchannels = restreamer.ListChannels().length;
 
 		handleBack = () => {
 			setStep($abort.step);
 		};
 
 		handleNext = () => {
-			props.restreamer.DeleteChannel(_channelid);
+			restreamer.DeleteChannel(_channelid);
 
 			// Select a channel to jump back to
-			const channels = props.restreamer.ListChannels();
-			props.restreamer.SelectChannel(channels[0].channelid);
+			const channels = restreamer.ListChannels();
+			restreamer.SelectChannel(channels[0].channelid);
 
 			navigate(`/`);
 		};
@@ -863,7 +880,3 @@ export default function Wizard(props) {
 
 	return null;
 }
-
-Wizard.defaultProps = {
-	restreamer: null,
-};

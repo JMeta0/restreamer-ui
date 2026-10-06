@@ -135,8 +135,8 @@ function createOutputs(settings, skills, metadata, streams) {
 	return [output];
 }
 
-function Service(props) {
-	const settings = init(props.settings, props.metadata);
+function Service({ settings = {}, skills = {}, metadata = {}, streams = [], onChange = function (output, settings) {} }) {
+	settings = init(settings, metadata);
 
 	const handleChange = (what) => (event) => {
 		const value = event.target.value;
@@ -151,9 +151,9 @@ function Service(props) {
 			settings[what] = value;
 		}
 
-		const outputs = createOutputs(settings, props.skills, props.metadata, props.streams);
+		const outputs = createOutputs(settings, skills, metadata, streams);
 
-		props.onChange(outputs, settings);
+		onChange(outputs, settings);
 	};
 
 	return (
@@ -256,14 +256,6 @@ function Service(props) {
 		</Grid>
 	);
 }
-
-Service.defaultProps = {
-	settings: {},
-	skills: {},
-	metadata: {},
-	streams: [],
-	onChange: function (output, settings) {},
-};
 
 export {
 	id,

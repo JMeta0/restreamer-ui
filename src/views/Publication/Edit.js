@@ -51,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Edit(props) {
+export default function Edit({ restreamer = null }) {
 	const classes = useStyles();
 	const { i18n } = useLingui();
 	const { channelid: _channelid, service: _service, index: _index } = useParams();
-	const id = props.restreamer.GetEgressId(_service, _index);
+	const id = restreamer.GetEgressId(_service, _index);
 	const navigate = useNavigate();
 	const notify = React.useContext(NotifyContext);
 	const [$ready, setReady] = React.useState(false);
@@ -107,13 +107,13 @@ export default function Edit(props) {
 	}, [navigate, $invalid]);
 
 	const update = async (isFirst) => {
-		const channelid = props.restreamer.SelectChannel(_channelid);
+		const channelid = restreamer.SelectChannel(_channelid);
 		if (channelid === '' || channelid !== _channelid) {
 			setInvalid('/');
 			return;
 		}
 
-		const proc = await props.restreamer.GetEgress(_channelid, id, ['state']);
+		const proc = await restreamer.GetEgress(_channelid, id, ['state']);
 		if (proc === null) {
 			notify.Dispatch('warning', 'notfound:egress:' + _service, i18n._(t`Publication service not found`));
 			setInvalid(`/${_channelid}`);
@@ -132,13 +132,13 @@ export default function Edit(props) {
 
 			setService(s);
 
-			const skills = await props.restreamer.Skills();
+			const skills = await restreamer.Skills();
 			setSkills(skills);
 
 			const serviceSkills = helper.conflateServiceSkills(s.requires, skills);
 			setServiceSkills(serviceSkills);
 
-			const ingest = await props.restreamer.GetIngestMetadata(_channelid);
+			const ingest = await restreamer.GetIngestMetadata(_channelid);
 			setMetadata({
 				...$metadata,
 				name: ingest.meta.name,
@@ -163,7 +163,7 @@ export default function Edit(props) {
 			const sources = helper.createSourcesFromStreams(ingest.streams);
 			setSources(sources);
 
-			const settings = await props.restreamer.GetEgressMetadata(_channelid, id);
+			const settings = await restreamer.GetEgressMetadata(_channelid, id);
 
 			const profiles = settings.profiles;
 			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', ingest.streams, serviceSkills.codecs.video, skills);
@@ -188,14 +188,14 @@ export default function Edit(props) {
 		let state = 'disconnected';
 
 		if (action === 'connect') {
-			await props.restreamer.StartEgress(_channelid, id);
+			await restreamer.StartEgress(_channelid, id);
 			state = 'connecting';
 		} else if (action === 'disconnect') {
-			await props.restreamer.StopEgress(_channelid, id);
+			await restreamer.StopEgress(_channelid, id);
 			state = 'disconnecting';
 		} else if (action === 'reconnect') {
-			await props.restreamer.StopEgress(_channelid, id);
-			await props.restreamer.StartEgress(_channelid, id);
+			await restreamer.StopEgress(_channelid, id);
+			await restreamer.StartEgress(_channelid, id);
 			state = 'connecting';
 		}
 
@@ -293,14 +293,14 @@ export default function Edit(props) {
 			return;
 		}
 
-		const [, err] = await props.restreamer.UpdateEgress(_channelid, id, global, inputs, outputs, $settings.control);
+		const [, err] = await restreamer.UpdateEgress(_channelid, id, global, inputs, outputs, $settings.control);
 		if (err !== null) {
 			setSaving(false);
 			notify.Dispatch('error', 'save:egress:' + _service, i18n._(t`Failed to store publication service (${err.message})`));
 			return;
 		}
 
-		await props.restreamer.SetEgressMetadata(_channelid, id, $settings);
+		await restreamer.SetEgressMetadata(_channelid, id, $settings);
 
 		setSaving(false);
 
@@ -341,7 +341,7 @@ export default function Edit(props) {
 	const handleServiceDelete = async () => {
 		setSaving(true);
 
-		const res = await props.restreamer.DeleteEgress(_channelid, id);
+		const res = await restreamer.DeleteEgress(_channelid, id);
 		if (res === false) {
 			setSaving(false);
 			notify.Dispatch('warning', 'delete:egress:' + _service, i18n._(t`The publication service "${$settings.name}" could not be deleted`));
@@ -382,7 +382,7 @@ export default function Edit(props) {
 		};
 
 		if (open === true) {
-			const data = await props.restreamer.GetEgressLog(_channelid, id);
+			const data = await restreamer.GetEgressLog(_channelid, id);
 			if (data !== null) {
 				logdata = data;
 			}
@@ -402,7 +402,7 @@ export default function Edit(props) {
 	};
 
 	const updateProcessDetailsLog = async () => {
-		const data = await props.restreamer.GetEgressLog(_channelid, id);
+		const data = await restreamer.GetEgressLog(_channelid, id);
 		if (data !== null) {
 			setProcessDetails({
 				...$processDetails,
@@ -419,7 +419,7 @@ export default function Edit(props) {
 		let data = '';
 
 		if (show === true) {
-			const debug = await props.restreamer.GetEgressDebug(_channelid, id);
+			const debug = await restreamer.GetEgressDebug(_channelid, id);
 			data = JSON.stringify(debug, null, 2);
 		}
 
@@ -668,10 +668,6 @@ export default function Edit(props) {
 		</React.Fragment>
 	);
 }
-
-Edit.defaultProps = {
-	restreamer: null,
-};
 
 Edit.propTypes = {
 	restreamer: PropTypes.object.isRequired,
