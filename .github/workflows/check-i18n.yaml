@@ -1,0 +1,33 @@
+name: 'Check compiled message catalogs'
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+            - dev
+
+jobs:
+    check-i18n:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '21'
+
+            - name: Compile message catalogs
+              run: |
+                  yarn install
+                  yarn i18n-compile
+
+            - name: Fail if compiled catalogs are stale
+              run: |
+                  if ! git diff --quiet -- src/locales; then
+                      echo "::error::Compiled message catalogs are out of date. Run 'yarn i18n-compile' and commit the result."
+                      git --no-pager diff --stat -- src/locales
+                      exit 1
+                  fi
