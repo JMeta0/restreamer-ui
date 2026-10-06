@@ -17,8 +17,8 @@ msgstr ""
 msgid "<0>Compatibility list</0>"
 msgstr "<0>Kompatibilitetsliste</0>"
 
-#: src/views/Edit/Profile.js:560
-#: src/views/Edit/Profile.js:719
+#: src/views/Edit/Profile.js:567
+#: src/views/Edit/Profile.js:699
 msgid "<0>Show probe details</0>"
 msgstr "<0>Se probe data</0>"
 
@@ -45,9 +45,9 @@ msgstr "7 (+ fragmenteret MP4-format)"
 #: src/misc/ChannelList.js:412
 #: src/views/Edit/index.js:647
 #: src/views/Edit/index.js:666
-#: src/views/Edit/Profile.js:599
+#: src/views/Edit/Profile.js:606
 #: src/views/Edit/Wizard/Abort.js:14
-#: src/views/Publication/Edit.js:631
+#: src/views/Publication/Edit.js:652
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
@@ -66,6 +66,10 @@ msgstr "Tilføj"
 msgid "Add Audio"
 msgstr ""
 
+#: src/misc/AudioTracks.js:204
+msgid "Add audio track"
+msgstr ""
+
 #: src/views/Playersite.js:733
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
 msgstr "Tilføj eksterne widgets og stilarter til publikationswebstedet. Du kan finde nogle eksempler på hjælpesiden."
@@ -74,7 +78,7 @@ msgstr "Tilføj eksterne widgets og stilarter til publikationswebstedet. Du kan 
 msgid "Add new channel"
 msgstr "Tilføj ny kanal"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:395
 msgid "Add Publication"
 msgstr "Tilføj Publicering"
 
@@ -82,7 +86,7 @@ msgstr "Tilføj Publicering"
 #~ msgid "Add Stream"
 #~ msgstr ""
 
-#: src/views/Publication/Add.js:366
+#: src/views/Publication/Add.js:398
 msgid "Add: {0}"
 msgstr "Tilføj: {0}"
 
@@ -101,7 +105,7 @@ msgstr ""
 #: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
-#: src/views/Publication/Services/Icecast.js:162
+#: src/views/Publication/Services/Icecast.js:168
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:170
@@ -145,7 +149,7 @@ msgstr "Avanceret overvågning"
 #: src/views/Edit/Sources/Network.js:518
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
-#: src/views/Publication/Services/Icecast.js:172
+#: src/views/Publication/Services/Icecast.js:178
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:176
 #: src/views/Publication/Services/RTMP.js:174
@@ -168,7 +172,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "Advarsel via e-mail"
 
-#: src/views/Publication/Add.js:386
+#: src/views/Publication/Add.js:418
 msgid "All"
 msgstr "Alle"
 
@@ -218,7 +222,7 @@ msgstr "Program"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "Er du sikker på, at du vil afbryde guiden?"
 
-#: src/views/Publication/Add.js:527
+#: src/views/Publication/Add.js:559
 msgid "Audio"
 msgstr "Lyd"
 
@@ -236,9 +240,9 @@ msgstr "Lyd enhed"
 msgid "Audio from device"
 msgstr "Lyd fra enhed"
 
-#: src/views/Edit/Profile.js:614
-#: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:565
+#: src/views/Edit/Profile.js:621
+#: src/views/Edit/ProfileSummary.js:91
+#: src/views/Publication/Edit.js:595
 msgid "Audio settings"
 msgstr "Lydindstillinger"
 
@@ -291,14 +295,14 @@ msgstr "AVFoundation"
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
-#: src/views/Edit/Profile.js:760
+#: src/views/Edit/Profile.js:729
 #: src/views/Edit/Wizard/Abort.js:25
 #: src/views/Edit/Wizard/Audio.js:109
 #: src/views/Edit/Wizard/License.js:38
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:561
+#: src/views/Publication/Add.js:584
 msgid "Back"
 msgstr "Tilbage"
 
@@ -422,7 +426,7 @@ msgstr "Kanaler"
 msgid "Check for updates"
 msgstr "Check opdatering"
 
-#: src/views/Publication/Add.js:316
+#: src/views/Publication/Add.js:348
 msgid "Check the requirements"
 msgstr "Check nødvendigheder"
 
@@ -475,9 +479,9 @@ msgstr "Chunk"
 #: src/misc/modals/Hint.js:181
 #: src/views/Edit/index.js:621
 #: src/views/Playersite.js:823
-#: src/views/Publication/Add.js:404
-#: src/views/Publication/Add.js:558
-#: src/views/Publication/Edit.js:595
+#: src/views/Publication/Add.js:436
+#: src/views/Publication/Add.js:581
+#: src/views/Publication/Edit.js:616
 #: src/views/Publication/Player.js:536
 #: src/views/Settings.js:2219
 msgid "Close"
@@ -735,12 +739,12 @@ msgstr "Forsinkelse (ms)"
 #: src/views/Edit/index.js:635
 #: src/views/Edit/index.js:671
 #: src/views/Playersite.js:506
-#: src/views/Publication/Edit.js:604
-#: src/views/Publication/Edit.js:636
+#: src/views/Publication/Edit.js:625
+#: src/views/Publication/Edit.js:657
 msgid "Delete"
 msgstr "Fjern"
 
-#: src/views/Publication/Edit.js:641
+#: src/views/Publication/Edit.js:662
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "Det er ikke muligt at slette en publikationstjeneste. Offentliggørelsen stopper straks."
 
@@ -803,7 +807,7 @@ msgstr "Ønsker du virkelig at genstarte programmet nu?"
 msgid "Do you want to delete \"{0}\"?"
 msgstr "Ønsker du at slette \"{0}\"?"
 
-#: src/views/Publication/Edit.js:628
+#: src/views/Publication/Edit.js:649
 msgid "Do you want to delete {title}?"
 msgstr "Vil du fjerne {title}?"
 
@@ -818,7 +822,7 @@ msgstr "Dokumenter"
 
 #: src/views/Publication/Services/DASH.js:501
 #: src/views/Publication/Services/HLS.js:496
-#: src/views/Publication/Services/Icecast.js:240
+#: src/views/Publication/Services/Icecast.js:246
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:365
 #: src/views/Publication/Services/RTMP.js:286
@@ -848,7 +852,7 @@ msgstr "Ret"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "Rediger lyd- og videokilderne til livestreamet. Tilføj en beskrivelse, og indstil den ønskede indholdslicens."
 
-#: src/views/Publication/Edit.js:417
+#: src/views/Publication/Edit.js:447
 msgid "Edit: {title}"
 msgstr "Ret: {title}"
 
@@ -927,8 +931,8 @@ msgid "Encoder"
 msgstr "Encoder"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:492
-#: src/views/Publication/Edit.js:528
+#: src/views/Publication/Add.js:524
+#: src/views/Publication/Edit.js:558
 msgid "Encoding"
 msgstr "Kodning"
 
@@ -1010,7 +1014,7 @@ msgstr "Udvider sidefod"
 msgid "Extend header"
 msgstr "Forlænge overskriften"
 
-#: src/views/Publication/Add.js:229
+#: src/views/Publication/Add.js:261
 msgid "Failed to create publication service ({0})"
 msgstr "Det lykkedes ikke at oprette en publikationstjeneste ({0})"
 
@@ -1018,8 +1022,8 @@ msgstr "Det lykkedes ikke at oprette en publikationstjeneste ({0})"
 msgid "Failed to create publication website files."
 msgstr "Det lykkedes ikke at oprette filer til publikationswebstedet."
 
-#: src/views/Edit/Profile.js:512
-#: src/views/Edit/Profile.js:671
+#: src/views/Edit/Profile.js:519
+#: src/views/Edit/Profile.js:659
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Mislykkes probe hos kilde. Undersøg <0> probe oplysninger</0>."
 
@@ -1039,7 +1043,7 @@ msgstr "Det er ikke lykkedes at stoppe processen"
 msgid "Failed to store player size setting."
 msgstr "Det lykkedes ikke at gemme indstillingen for spillerstørrelse."
 
-#: src/views/Publication/Edit.js:269
+#: src/views/Publication/Edit.js:299
 msgid "Failed to store publication service ({0})"
 msgstr "Det lykkedes ikke at gemme publikationstjenesten ({0})"
 
@@ -1077,7 +1081,7 @@ msgstr "Filsti"
 msgid "Filter"
 msgstr "Filter"
 
-#: src/views/Edit/Profile.js:768
+#: src/views/Edit/Profile.js:737
 msgid "Finish"
 msgstr "Færdig"
 
@@ -1149,11 +1153,11 @@ msgstr "Frekvens (Hz)"
 #: src/views/Edit/Sources/Network.js:612
 #: src/views/Playersite.js:328
 #: src/views/Playersite.js:341
-#: src/views/Publication/Add.js:414
-#: src/views/Publication/Edit.js:426
+#: src/views/Publication/Add.js:446
+#: src/views/Publication/Edit.js:456
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
-#: src/views/Publication/Services/Icecast.js:179
+#: src/views/Publication/Services/Icecast.js:185
 #: src/views/Publication/Services/Image2.js:139
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
@@ -1174,7 +1178,7 @@ msgstr "Almindelig"
 #: src/views/Publication/Services/Restream.js:120
 #: src/views/Publication/Services/Rumble.js:107
 #: src/views/Publication/Services/Trovo.js:79
-#: src/views/Publication/Services/Twitch.js:155
+#: src/views/Publication/Services/Twitch.js:156
 #: src/views/Publication/Services/Twitter.js:179
 #: src/views/Publication/Services/Wettercom.js:107
 #: src/views/Publication/Services/Youtube.js:193
@@ -1279,8 +1283,8 @@ msgstr "Tryk"
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
 msgstr "Ud over afspilleren tilbyder Restreamer en komplet landingpage, som du kan bruge til at præsentere din live stream nemt og hurtigt."
 
-#: src/views/Edit/Profile.js:521
-#: src/views/Edit/Profile.js:680
+#: src/views/Edit/Profile.js:528
+#: src/views/Edit/Profile.js:668
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
 msgstr ""
 
@@ -1294,7 +1298,7 @@ msgstr "In-memory"
 msgid "In-memory storage"
 msgstr "Lagring i hukommelsen"
 
-#: src/views/Publication/Add.js:313
+#: src/views/Publication/Add.js:345
 msgid "Incompatible"
 msgstr "Uforenlig"
 
@@ -1389,8 +1393,8 @@ msgid "Life color"
 msgstr "Livets farve"
 
 #: src/views/Edit/index.js:565
-#: src/views/Publication/Add.js:458
-#: src/views/Publication/Edit.js:470
+#: src/views/Publication/Add.js:490
+#: src/views/Publication/Edit.js:500
 msgid "Limits"
 msgstr "Grænser"
 
@@ -1455,7 +1459,7 @@ msgstr "Live-streaming til PeerTube v3+ RTMP/S-tjeneste."
 msgid "Live-Streaming to Trovo Live RTMP Service."
 msgstr "Live-streaming til Trovo Live RTMP-tjeneste."
 
-#: src/views/Publication/Services/Twitch.js:17
+#: src/views/Publication/Services/Twitch.js:18
 msgid "Live-Streaming to Twitch Live RTMP Service."
 msgstr "Streaming til Twitch Live RTMP Service."
 
@@ -1648,7 +1652,7 @@ msgid "Mold"
 msgstr "Skimmelsvamp"
 
 #: src/views/Publication/Services/Facebook.js:17
-#: src/views/Publication/Services/Twitch.js:18
+#: src/views/Publication/Services/Twitch.js:19
 #: src/views/Publication/Services/Vimeo.js:14
 msgid "More about licenses here"
 msgstr "Mere om licenser her"
@@ -1664,6 +1668,24 @@ msgstr "Mere om Twitters ophavsret <0>her</0>."
 #: src/views/Publication/Services/Youtube.js:31
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "Mere om YouTube's copyright <0>here</0>."
+
+#: src/misc/AudioTracks.js:96
+msgid "Most players (and legacy RTMP/FLV endpoints) only play the first audio track. Additional tracks are e.g. used by Twitch for the VOD audio."
+msgstr ""
+
+#: src/misc/AudioTracks.js:153
+#: src/misc/AudioTracks.js:154
+msgid "Move audio track down"
+msgstr ""
+
+#: src/misc/AudioTracks.js:144
+#: src/misc/AudioTracks.js:145
+msgid "Move audio track up"
+msgstr ""
+
+#: src/misc/AudioTracks.js:94
+msgid "Multiple audio tracks for FLV-based outputs require FFmpeg 8 or newer."
+msgstr ""
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
@@ -1718,7 +1740,7 @@ msgstr "Netværkskilde"
 msgid "Next"
 msgstr "Næste"
 
-#: src/views/Edit/Profile.js:602
+#: src/views/Edit/Profile.js:609
 msgid "Next: Audio"
 msgstr "Næste: Audio"
 
@@ -1738,6 +1760,11 @@ msgstr "Igen lyd"
 #: src/views/Edit/StreamSelect.js:62
 msgid "No audio stream available"
 msgstr "Ingen lydstrøm tilgængelig"
+
+#: src/misc/AudioTracks.js:189
+#: src/views/Edit/ProfileSummary.js:98
+msgid "No audio track selected. The publication will be sent without audio."
+msgstr ""
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:70
 #: src/views/Edit/Wizard/Sources/V4L.js:99
@@ -1855,7 +1882,7 @@ msgstr "Passphrase til SRT-kryptering."
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Passphrase skal være mellem 10 og 79 tegn lang"
 
-#: src/views/Publication/Edit.js:533
+#: src/views/Publication/Edit.js:563
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Passthrough (kopi) bør kun deaktiveres, hvis det er nødvendigt. Hver kodning kræver ekstra CPU/GPU-ressourcer."
 
@@ -1904,7 +1931,7 @@ msgstr ""
 msgid "Plan: <0>Starter</0>"
 msgstr "Plan: <0>Start</0>"
 
-#: src/views/Publication/Add.js:389
+#: src/views/Publication/Add.js:421
 msgid "Platforms"
 msgstr "Platforme"
 
@@ -1990,7 +2017,7 @@ msgstr "Du bedes kontakte tjenestens operatør og undersøge, hvad der sker."
 msgid "Please select a file to upload."
 msgstr "Vælg fil til upload."
 
-#: src/views/Publication/Add.js:497
+#: src/views/Publication/Add.js:529
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "Brug venligst \"Passthrough (kopi)\", hvis det er muligt. Kodning kræver ekstra CPU/GPU-ressourcer."
 
@@ -2049,27 +2076,27 @@ msgid "Probe"
 msgstr "Sonde"
 
 #: src/views/Edit/index.js:554
-#: src/views/Publication/Add.js:447
-#: src/views/Publication/Edit.js:459
+#: src/views/Publication/Add.js:479
+#: src/views/Publication/Edit.js:489
 msgid "Process"
 msgstr "Proces"
 
-#: src/views/Publication/Add.js:416
-#: src/views/Publication/Edit.js:428
+#: src/views/Publication/Add.js:448
+#: src/views/Publication/Edit.js:458
 msgid "Process control"
 msgstr "Proceskontrol"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:467
-#: src/views/Publication/Edit.js:494
-#: src/views/Publication/Edit.js:613
+#: src/views/Publication/Edit.js:524
+#: src/views/Publication/Edit.js:634
 msgid "Process details"
 msgstr "Procesoplysninger"
 
 #: src/views/Main/index.js:454
 #: src/views/Main/index.js:475
-#: src/views/Publication/Edit.js:497
-#: src/views/Publication/Edit.js:621
+#: src/views/Publication/Edit.js:527
+#: src/views/Publication/Edit.js:642
 msgid "Process report"
 msgstr "Procesrapport"
 
@@ -2099,7 +2126,7 @@ msgstr "Profil"
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
 #: src/views/Publication/Services/HLS.js:175
-#: src/views/Publication/Services/Icecast.js:156
+#: src/views/Publication/Services/Icecast.js:162
 #: src/views/Publication/Services/Image2.js:120
 #: src/views/Publication/Services/Linkedin.js:84
 #: src/views/Publication/Services/MPEGTS.js:164
@@ -2114,7 +2141,7 @@ msgstr "Profil"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/views/Publication/Add.js:395
+#: src/views/Publication/Add.js:427
 msgid "Protocols"
 msgstr "Protokoller"
 
@@ -2122,8 +2149,8 @@ msgstr "Protokoller"
 msgid "Public domain/s"
 msgstr "Offentligt domæne/offentlige domæner"
 
-#: src/views/Publication/Edit.js:117
-#: src/views/Publication/Edit.js:127
+#: src/views/Publication/Edit.js:118
+#: src/views/Publication/Edit.js:128
 msgid "Publication service not found"
 msgstr "Publicerings service ikke fundet"
 
@@ -2222,7 +2249,7 @@ msgstr "Opdater"
 #: src/views/Publication/Services/Livepush.js:85
 #: src/views/Publication/Services/PicartoTv.js:85
 #: src/views/Publication/Services/Restream.js:86
-#: src/views/Publication/Services/Twitch.js:83
+#: src/views/Publication/Services/Twitch.js:84
 #: src/views/Publication/Services/Twitter.js:150
 #: src/views/Publication/Services/Twitter.js:166
 msgid "Region"
@@ -2239,6 +2266,11 @@ msgstr "Genindlæsning"
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
+msgstr ""
+
+#: src/misc/AudioTracks.js:160
+#: src/misc/AudioTracks.js:160
+msgid "Remove audio track"
 msgstr ""
 
 #: src/misc/modals/Hint.js:150
@@ -2377,8 +2409,8 @@ msgstr "Prøvetagning"
 #: src/views/Edit/index.js:632
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Playersite.js:829
-#: src/views/Publication/Add.js:567
-#: src/views/Publication/Edit.js:601
+#: src/views/Publication/Add.js:590
+#: src/views/Publication/Edit.js:622
 #: src/views/Publication/Player.js:542
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2451,8 +2483,8 @@ msgstr "Vælg en enhed:"
 msgid "Select audio source:"
 msgstr "Vælg lydkilde:"
 
-#: src/views/Publication/Add.js:480
-#: src/views/Publication/Edit.js:520
+#: src/views/Publication/Add.js:512
+#: src/views/Publication/Edit.js:550
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "Vælg RTMP eller SRT (hvis aktiveret) for at opnå mindre ventetid."
 
@@ -2526,8 +2558,8 @@ msgstr "Server-URL"
 msgid "Service"
 msgstr "Service"
 
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:439
+#: src/views/Publication/Add.js:459
+#: src/views/Publication/Edit.js:469
 msgid "Service name"
 msgstr "Navn på tjeneste"
 
@@ -2620,22 +2652,22 @@ msgstr "Social-login (OAuth2, 2FA)"
 msgid "Socket timeout (microseconds)"
 msgstr "Socket timeout (mikrosekunder)"
 
-#: src/views/Publication/Add.js:392
+#: src/views/Publication/Add.js:424
 msgid "Software"
 msgstr "Software"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:475
-#: src/views/Publication/Edit.js:515
+#: src/views/Publication/Add.js:507
+#: src/views/Publication/Edit.js:545
 msgid "Source"
 msgstr "Kilde"
 
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Add.js:470
-#: src/views/Publication/Edit.js:427
-#: src/views/Publication/Edit.js:510
+#: src/views/Publication/Add.js:447
+#: src/views/Publication/Add.js:502
+#: src/views/Publication/Edit.js:457
+#: src/views/Publication/Edit.js:540
 msgid "Source & Encoding"
 msgstr "Kilde og kodning"
 
@@ -2725,7 +2757,7 @@ msgstr ""
 #: src/views/Publication/Services/Rumble.js:100
 #: src/views/Publication/Services/Telegram.js:101
 #: src/views/Publication/Services/Trovo.js:75
-#: src/views/Publication/Services/Twitch.js:151
+#: src/views/Publication/Services/Twitch.js:152
 #: src/views/Publication/Services/Twitter.js:175
 #: src/views/Publication/Services/Vimeo.js:73
 #: src/views/Publication/Services/Wettercom.js:100
@@ -2835,11 +2867,11 @@ msgstr "Sletning af denne kanal kan ikke genoprettes. Alle publikationer af denn
 
 #: src/views/Edit/index.js:302
 #: src/views/Edit/Wizard/index.js:176
-#: src/views/Publication/Edit.js:262
+#: src/views/Publication/Edit.js:292
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "Input profil er ikke komplet. Definer Video og Audio kilde."
 
-#: src/views/Publication/Add.js:222
+#: src/views/Publication/Add.js:254
 msgid "The input profile is not complete. Please define a video and/or audio source."
 msgstr "Inputprofilen er ikke komplet. Definér venligst en video- og/eller lydkilde."
 
@@ -2856,6 +2888,10 @@ msgstr "Det maksimale antal playlist-segmenter. 0 vil indeholde alle segmenter. 
 msgid "The noise color"
 msgstr "Støjens farve"
 
+#: src/misc/AudioTracks.js:197
+msgid "The order of the tracks defines the order of the output audio tracks."
+msgstr ""
+
 #: src/misc/controls/License/index.js:60
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Du må kopiere og rette og fordele, samt anvende dette kommercielt og ukommercielt frit uden at spørge om lov."
@@ -2864,19 +2900,19 @@ msgstr "Du må kopiere og rette og fordele, samt anvende dette kommercielt og uk
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Det offentlige domænenavn, der kan nås, for den vært, som Restreamer kører på. Adskil flere domænenavne med et komma."
 
-#: src/views/Publication/Edit.js:317
+#: src/views/Publication/Edit.js:347
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "Publicerings service \"{0}\" kan ikke fjernes"
 
-#: src/views/Publication/Add.js:237
+#: src/views/Publication/Add.js:269
 msgid "The publication service \"{0}\" has been created"
 msgstr "Publicerings service \"{0}\" er oprettet"
 
-#: src/views/Publication/Edit.js:323
+#: src/views/Publication/Edit.js:353
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "Publicerings service \"{0}\" fjernet"
 
-#: src/views/Publication/Add.js:235
+#: src/views/Publication/Add.js:267
 msgid "The publication service has been created"
 msgstr "Publicerings service \"{0}\" er blevet oprettet"
 
@@ -2903,7 +2939,7 @@ msgstr "Den valgte fil er for stor (<0/>). Kun <1/> er tilladt."
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "Den valgte filtype ({0}) er ikke tilladt. Tilladte filtyper er {1}"
 
-#: src/views/Publication/Edit.js:277
+#: src/views/Publication/Edit.js:307
 msgid "The settings for \"{0}\" have been saved"
 msgstr "Konfiguration til \"{0}\" er gemt"
 
@@ -2911,7 +2947,7 @@ msgstr "Konfiguration til \"{0}\" er gemt"
 msgid "The source doesn't provide any audio streams."
 msgstr "Kilde har ingen audio streams."
 
-#: src/views/Edit/Profile.js:696
+#: src/views/Edit/Profile.js:684
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
 msgstr "Kilde har ingen audio streams. Undersøg <0>probe oplysninger</0>."
 
@@ -2923,7 +2959,7 @@ msgstr "Kilde har ikke kompatible audio streams."
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
 msgstr "Kilde har ikke kompatible audio streams. undersøg  <0>krav</0>."
 
-#: src/views/Edit/Profile.js:537
+#: src/views/Edit/Profile.js:544
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
 msgstr "Kilde har ingen video streams. Undersøg <0>probe oplysninger</0>."
 
@@ -2974,6 +3010,10 @@ msgstr "Der var nogle fejl i konfiguration. Konfiguration ikke gemt."
 msgid "There's no login method available."
 msgstr "Der er ingen login-metode tilgængelig."
 
+#: src/misc/AudioTracks.js:98
+msgid "This audio stream is already used by another track."
+msgstr ""
+
 #: src/views/Publication/Services/Dummy.js:26
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "Dette er en dummy-tjeneste, som forklarer dig begreberne i forbindelse med tjeneste."
@@ -3013,6 +3053,10 @@ msgstr "Denne licens tillader genbrugere at distribuere, remixe, tilpasse og byg
 #: src/views/Edit/Sources/Network.js:781
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Denne protokol er ukendt eller understøttes ikke af den tilgængelige binære FFmpeg-protokol."
+
+#: src/misc/AudioTracks.js:92
+msgid "This service supports only one audio track. Additional tracks are ignored."
+msgstr ""
 
 #: src/views/Edit/index.js:657
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
@@ -3063,6 +3107,15 @@ msgstr "Token"
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "Top felt"
+
+#: src/misc/AudioTracks.js:138
+#: src/views/Edit/ProfileSummary.js:107
+msgid "Track {0}"
+msgstr ""
+
+#: src/views/Publication/Services/Twitch.js:161
+msgid "Track 1 is sent as the live audio, track 2 as the VOD audio (Twitch VOD track)."
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3332,7 +3385,7 @@ msgstr "fløjl"
 msgid "Vertical Flip"
 msgstr "Lodret flip"
 
-#: src/views/Publication/Add.js:502
+#: src/views/Publication/Add.js:534
 msgid "Video"
 msgstr "Video"
 
@@ -3345,9 +3398,9 @@ msgstr "Video"
 msgid "Video device"
 msgstr "Videoenhed"
 
-#: src/views/Edit/Profile.js:490
-#: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:540
+#: src/views/Edit/Profile.js:497
+#: src/views/Edit/ProfileSummary.js:67
+#: src/views/Publication/Edit.js:570
 msgid "Video settings"
 msgstr "Videoindstillinger"
 
@@ -3434,7 +3487,7 @@ msgstr "Du har ændret konfigurationen. For at ændringerne kan træde i kraft, 
 msgid "You have to reconnect manually"
 msgstr "Du skal genetablere forbindelsen manuelt"
 
-#: src/views/Publication/Edit.js:482
+#: src/views/Publication/Edit.js:512
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "Du har ændringer, der ikke er gemt. Gem dem venligst, før du kan styre tjenesten igen."
 

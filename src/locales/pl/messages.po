@@ -17,8 +17,8 @@ msgstr ""
 msgid "<0>Compatibility list</0>"
 msgstr "<0>Lista kompatybilności</0>"
 
-#: src/views/Edit/Profile.js:560
-#: src/views/Edit/Profile.js:719
+#: src/views/Edit/Profile.js:567
+#: src/views/Edit/Profile.js:699
 msgid "<0>Show probe details</0>"
 msgstr "<0>Pokaż szczegóły sondy</0>"
 
@@ -45,9 +45,9 @@ msgstr "7 (+ fragmentaryczny format MP4)"
 #: src/misc/ChannelList.js:412
 #: src/views/Edit/index.js:647
 #: src/views/Edit/index.js:666
-#: src/views/Edit/Profile.js:599
+#: src/views/Edit/Profile.js:606
 #: src/views/Edit/Wizard/Abort.js:14
-#: src/views/Publication/Edit.js:631
+#: src/views/Publication/Edit.js:652
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
@@ -66,6 +66,10 @@ msgstr "Dodaj"
 msgid "Add Audio"
 msgstr ""
 
+#: src/misc/AudioTracks.js:204
+msgid "Add audio track"
+msgstr ""
+
 #: src/views/Playersite.js:733
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
 msgstr "Dodaj widżety i style zewnętrzne do witryny publikowania. Kilka przykładów znajdziesz na stronie pomocy."
@@ -74,7 +78,7 @@ msgstr "Dodaj widżety i style zewnętrzne do witryny publikowania. Kilka przyk�
 msgid "Add new channel"
 msgstr "Dodaj nowy kanał"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:395
 msgid "Add Publication"
 msgstr "Dodaj Publikację"
 
@@ -82,7 +86,7 @@ msgstr "Dodaj Publikację"
 #~ msgid "Add Stream"
 #~ msgstr ""
 
-#: src/views/Publication/Add.js:366
+#: src/views/Publication/Add.js:398
 msgid "Add: {0}"
 msgstr "Dodaj : {0}"
 
@@ -101,7 +105,7 @@ msgstr ""
 #: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
-#: src/views/Publication/Services/Icecast.js:162
+#: src/views/Publication/Services/Icecast.js:168
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:170
@@ -145,7 +149,7 @@ msgstr "Zaawansowane monitorowanie"
 #: src/views/Edit/Sources/Network.js:518
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
-#: src/views/Publication/Services/Icecast.js:172
+#: src/views/Publication/Services/Icecast.js:178
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:176
 #: src/views/Publication/Services/RTMP.js:174
@@ -168,7 +172,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "Powiadomienie e-mail"
 
-#: src/views/Publication/Add.js:386
+#: src/views/Publication/Add.js:418
 msgid "All"
 msgstr "Wszystko"
 
@@ -218,7 +222,7 @@ msgstr "Aplikacja"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "Czy na pewno chcesz przerwać kreatorowi?"
 
-#: src/views/Publication/Add.js:527
+#: src/views/Publication/Add.js:559
 msgid "Audio"
 msgstr "Dźwięk"
 
@@ -236,9 +240,9 @@ msgstr "Urządzenie Dźwiękowe"
 msgid "Audio from device"
 msgstr "Dźwięk z urządzenia"
 
-#: src/views/Edit/Profile.js:614
-#: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:565
+#: src/views/Edit/Profile.js:621
+#: src/views/Edit/ProfileSummary.js:91
+#: src/views/Publication/Edit.js:595
 msgid "Audio settings"
 msgstr "Parametry dźwięku"
 
@@ -291,14 +295,14 @@ msgstr "AVFoundation"
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
-#: src/views/Edit/Profile.js:760
+#: src/views/Edit/Profile.js:729
 #: src/views/Edit/Wizard/Abort.js:25
 #: src/views/Edit/Wizard/Audio.js:109
 #: src/views/Edit/Wizard/License.js:38
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:561
+#: src/views/Publication/Add.js:584
 msgid "Back"
 msgstr "Wstecz"
 
@@ -422,7 +426,7 @@ msgstr "Kanały"
 msgid "Check for updates"
 msgstr "Sprawdź aktualizacje"
 
-#: src/views/Publication/Add.js:316
+#: src/views/Publication/Add.js:348
 msgid "Check the requirements"
 msgstr "Sprawdź wymagania"
 
@@ -475,9 +479,9 @@ msgstr "Kawałek"
 #: src/misc/modals/Hint.js:181
 #: src/views/Edit/index.js:621
 #: src/views/Playersite.js:823
-#: src/views/Publication/Add.js:404
-#: src/views/Publication/Add.js:558
-#: src/views/Publication/Edit.js:595
+#: src/views/Publication/Add.js:436
+#: src/views/Publication/Add.js:581
+#: src/views/Publication/Edit.js:616
 #: src/views/Publication/Player.js:536
 #: src/views/Settings.js:2219
 msgid "Close"
@@ -735,12 +739,12 @@ msgstr "Opóźnienie (w ms)"
 #: src/views/Edit/index.js:635
 #: src/views/Edit/index.js:671
 #: src/views/Playersite.js:506
-#: src/views/Publication/Edit.js:604
-#: src/views/Publication/Edit.js:636
+#: src/views/Publication/Edit.js:625
+#: src/views/Publication/Edit.js:657
 msgid "Delete"
 msgstr "Usuń"
 
-#: src/views/Publication/Edit.js:641
+#: src/views/Publication/Edit.js:662
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "Usunięcia usługi publikowania nie można cofnąć. Publikowanie zatrzymuje się natychmiast."
 
@@ -803,7 +807,7 @@ msgstr "Czy na pewno chcesz teraz ponownie uruchomić aplikację?"
 msgid "Do you want to delete \"{0}\"?"
 msgstr "Czy chcesz usunąć \"{0}”?"
 
-#: src/views/Publication/Edit.js:628
+#: src/views/Publication/Edit.js:649
 msgid "Do you want to delete {title}?"
 msgstr "Czy chcesz usunąć {title}?"
 
@@ -818,7 +822,7 @@ msgstr "Dokumentacja"
 
 #: src/views/Publication/Services/DASH.js:501
 #: src/views/Publication/Services/HLS.js:496
-#: src/views/Publication/Services/Icecast.js:240
+#: src/views/Publication/Services/Icecast.js:246
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:365
 #: src/views/Publication/Services/RTMP.js:286
@@ -848,7 +852,7 @@ msgstr "Edytuj"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "Zmień źródła audio i wideo dla transmisji na żywo. Dodaj opis i ustaw licencję na żądaną zawartość."
 
-#: src/views/Publication/Edit.js:417
+#: src/views/Publication/Edit.js:447
 msgid "Edit: {title}"
 msgstr "Edytuj: {title}"
 
@@ -927,8 +931,8 @@ msgid "Encoder"
 msgstr "Koder"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:492
-#: src/views/Publication/Edit.js:528
+#: src/views/Publication/Add.js:524
+#: src/views/Publication/Edit.js:558
 msgid "Encoding"
 msgstr "Kodowanie"
 
@@ -1010,7 +1014,7 @@ msgstr "Rozszerz stopkę"
 msgid "Extend header"
 msgstr "Rozszerz nagłówek"
 
-#: src/views/Publication/Add.js:229
+#: src/views/Publication/Add.js:261
 msgid "Failed to create publication service ({0})"
 msgstr "Nie udało się utworzyć usługi publikowania ({0})"
 
@@ -1018,8 +1022,8 @@ msgstr "Nie udało się utworzyć usługi publikowania ({0})"
 msgid "Failed to create publication website files."
 msgstr "Nie udało się utworzyć publikowanych plików witryny."
 
-#: src/views/Edit/Profile.js:512
-#: src/views/Edit/Profile.js:671
+#: src/views/Edit/Profile.js:519
+#: src/views/Edit/Profile.js:659
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Nie można zbadać źródła. Sprawdź <0>szczegóły sondy</0>."
 
@@ -1039,7 +1043,7 @@ msgstr "Zakończenie procesu nie powiodło się"
 msgid "Failed to store player size setting."
 msgstr "Nie udało się zapisać ustawienia rozmiaru dysku."
 
-#: src/views/Publication/Edit.js:269
+#: src/views/Publication/Edit.js:299
 msgid "Failed to store publication service ({0})"
 msgstr "Nie udało się zapisać usługi publikowania ({0})"
 
@@ -1077,7 +1081,7 @@ msgstr "Ścieżka pliku"
 msgid "Filter"
 msgstr "Filtr"
 
-#: src/views/Edit/Profile.js:768
+#: src/views/Edit/Profile.js:737
 msgid "Finish"
 msgstr "Wykończenie"
 
@@ -1149,11 +1153,11 @@ msgstr "Częstotliwość (Hz)"
 #: src/views/Edit/Sources/Network.js:612
 #: src/views/Playersite.js:328
 #: src/views/Playersite.js:341
-#: src/views/Publication/Add.js:414
-#: src/views/Publication/Edit.js:426
+#: src/views/Publication/Add.js:446
+#: src/views/Publication/Edit.js:456
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
-#: src/views/Publication/Services/Icecast.js:179
+#: src/views/Publication/Services/Icecast.js:185
 #: src/views/Publication/Services/Image2.js:139
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
@@ -1174,7 +1178,7 @@ msgstr "Główny"
 #: src/views/Publication/Services/Restream.js:120
 #: src/views/Publication/Services/Rumble.js:107
 #: src/views/Publication/Services/Trovo.js:79
-#: src/views/Publication/Services/Twitch.js:155
+#: src/views/Publication/Services/Twitch.js:156
 #: src/views/Publication/Services/Twitter.js:179
 #: src/views/Publication/Services/Wettercom.js:107
 #: src/views/Publication/Services/Youtube.js:193
@@ -1279,8 +1283,8 @@ msgstr "Wydrukowanie"
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
 msgstr "Oprócz odtwarzacza, Restreamer oferuje obszerną stronę główną, na której możesz łatwo i szybko zaprezentować swoją transmisję na żywo."
 
-#: src/views/Edit/Profile.js:521
-#: src/views/Edit/Profile.js:680
+#: src/views/Edit/Profile.js:528
+#: src/views/Edit/Profile.js:668
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
 msgstr ""
 
@@ -1294,7 +1298,7 @@ msgstr "W pamięci"
 msgid "In-memory storage"
 msgstr "Przechowywanie w pamięci"
 
-#: src/views/Publication/Add.js:313
+#: src/views/Publication/Add.js:345
 msgid "Incompatible"
 msgstr "Niezgodny"
 
@@ -1389,8 +1393,8 @@ msgid "Life color"
 msgstr "Kolor życia"
 
 #: src/views/Edit/index.js:565
-#: src/views/Publication/Add.js:458
-#: src/views/Publication/Edit.js:470
+#: src/views/Publication/Add.js:490
+#: src/views/Publication/Edit.js:500
 msgid "Limits"
 msgstr "Ograniczenia"
 
@@ -1455,7 +1459,7 @@ msgstr "Transmisja na żywo do usługi PeerTube v3+ RTMP/S."
 msgid "Live-Streaming to Trovo Live RTMP Service."
 msgstr "Przesyłanie strumieniowe na żywo do usługi Trovo Live RTMP."
 
-#: src/views/Publication/Services/Twitch.js:17
+#: src/views/Publication/Services/Twitch.js:18
 msgid "Live-Streaming to Twitch Live RTMP Service."
 msgstr "Transmisja na żywo w usłudze RTMP Twitch Live."
 
@@ -1648,7 +1652,7 @@ msgid "Mold"
 msgstr "Pleśń"
 
 #: src/views/Publication/Services/Facebook.js:17
-#: src/views/Publication/Services/Twitch.js:18
+#: src/views/Publication/Services/Twitch.js:19
 #: src/views/Publication/Services/Vimeo.js:14
 msgid "More about licenses here"
 msgstr "Więcej informacji o licencjach tutaj"
@@ -1664,6 +1668,24 @@ msgstr "Więcej informacji na temat praw autorskich Twittera <0>tutaj</0>."
 #: src/views/Publication/Services/Youtube.js:31
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "Więcej informacji o prawach autorskich w YouTube <0>tutaj</0>."
+
+#: src/misc/AudioTracks.js:96
+msgid "Most players (and legacy RTMP/FLV endpoints) only play the first audio track. Additional tracks are e.g. used by Twitch for the VOD audio."
+msgstr ""
+
+#: src/misc/AudioTracks.js:153
+#: src/misc/AudioTracks.js:154
+msgid "Move audio track down"
+msgstr ""
+
+#: src/misc/AudioTracks.js:144
+#: src/misc/AudioTracks.js:145
+msgid "Move audio track up"
+msgstr ""
+
+#: src/misc/AudioTracks.js:94
+msgid "Multiple audio tracks for FLV-based outputs require FFmpeg 8 or newer."
+msgstr ""
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
@@ -1718,7 +1740,7 @@ msgstr "Źródło sieciowe"
 msgid "Next"
 msgstr "Następny"
 
-#: src/views/Edit/Profile.js:602
+#: src/views/Edit/Profile.js:609
 msgid "Next: Audio"
 msgstr "Następny: Dźwięk"
 
@@ -1738,6 +1760,11 @@ msgstr "Bez dźwięku"
 #: src/views/Edit/StreamSelect.js:62
 msgid "No audio stream available"
 msgstr "Brak dostępnych strumieni audio"
+
+#: src/misc/AudioTracks.js:189
+#: src/views/Edit/ProfileSummary.js:98
+msgid "No audio track selected. The publication will be sent without audio."
+msgstr ""
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:70
 #: src/views/Edit/Wizard/Sources/V4L.js:99
@@ -1855,7 +1882,7 @@ msgstr "Passphrase dla szyfrowania SRT."
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Passphrase musi mieć długość od 10 do 79 znaków"
 
-#: src/views/Publication/Edit.js:533
+#: src/views/Publication/Edit.js:563
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Przekazywanie (kopiowanie) powinno być wyłączone tylko w razie potrzeby. Każde kodowanie wymaga dodatkowych zasobów procesora/GPU."
 
@@ -1904,7 +1931,7 @@ msgstr ""
 msgid "Plan: <0>Starter</0>"
 msgstr "Schemat: <0>Starter</0>"
 
-#: src/views/Publication/Add.js:389
+#: src/views/Publication/Add.js:421
 msgid "Platforms"
 msgstr "Platformy"
 
@@ -1990,7 +2017,7 @@ msgstr "Proszę skontaktować się z operatorem serwisu i sprawdzić co się dzi
 msgid "Please select a file to upload."
 msgstr "Wybierz plik do przesłania."
 
-#: src/views/Publication/Add.js:497
+#: src/views/Publication/Add.js:529
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "Jeśli to możliwe, użyj opcji \"Przekazywanie (kopiowanie)”. Kodowanie wymaga dodatkowych zasobów procesora/GPU."
 
@@ -2049,27 +2076,27 @@ msgid "Probe"
 msgstr "Sonda"
 
 #: src/views/Edit/index.js:554
-#: src/views/Publication/Add.js:447
-#: src/views/Publication/Edit.js:459
+#: src/views/Publication/Add.js:479
+#: src/views/Publication/Edit.js:489
 msgid "Process"
 msgstr "Przebieg"
 
-#: src/views/Publication/Add.js:416
-#: src/views/Publication/Edit.js:428
+#: src/views/Publication/Add.js:448
+#: src/views/Publication/Edit.js:458
 msgid "Process control"
 msgstr "Kontrola procesu"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:467
-#: src/views/Publication/Edit.js:494
-#: src/views/Publication/Edit.js:613
+#: src/views/Publication/Edit.js:524
+#: src/views/Publication/Edit.js:634
 msgid "Process details"
 msgstr "Szczegóły procesu"
 
 #: src/views/Main/index.js:454
 #: src/views/Main/index.js:475
-#: src/views/Publication/Edit.js:497
-#: src/views/Publication/Edit.js:621
+#: src/views/Publication/Edit.js:527
+#: src/views/Publication/Edit.js:642
 msgid "Process report"
 msgstr "Raport z procesu"
 
@@ -2099,7 +2126,7 @@ msgstr "Profil"
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
 #: src/views/Publication/Services/HLS.js:175
-#: src/views/Publication/Services/Icecast.js:156
+#: src/views/Publication/Services/Icecast.js:162
 #: src/views/Publication/Services/Image2.js:120
 #: src/views/Publication/Services/Linkedin.js:84
 #: src/views/Publication/Services/MPEGTS.js:164
@@ -2114,7 +2141,7 @@ msgstr "Profil"
 msgid "Protocol"
 msgstr "Protokół"
 
-#: src/views/Publication/Add.js:395
+#: src/views/Publication/Add.js:427
 msgid "Protocols"
 msgstr "Protokoły"
 
@@ -2122,8 +2149,8 @@ msgstr "Protokoły"
 msgid "Public domain/s"
 msgstr "Domena(y) publiczna(e)"
 
-#: src/views/Publication/Edit.js:117
-#: src/views/Publication/Edit.js:127
+#: src/views/Publication/Edit.js:118
+#: src/views/Publication/Edit.js:128
 msgid "Publication service not found"
 msgstr "Nie znaleziono usługi wydawniczej"
 
@@ -2222,7 +2249,7 @@ msgstr "Odśwież"
 #: src/views/Publication/Services/Livepush.js:85
 #: src/views/Publication/Services/PicartoTv.js:85
 #: src/views/Publication/Services/Restream.js:86
-#: src/views/Publication/Services/Twitch.js:83
+#: src/views/Publication/Services/Twitch.js:84
 #: src/views/Publication/Services/Twitter.js:150
 #: src/views/Publication/Services/Twitter.js:166
 msgid "Region"
@@ -2239,6 +2266,11 @@ msgstr "Odnów"
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
+msgstr ""
+
+#: src/misc/AudioTracks.js:160
+#: src/misc/AudioTracks.js:160
+msgid "Remove audio track"
 msgstr ""
 
 #: src/misc/modals/Hint.js:150
@@ -2377,8 +2409,8 @@ msgstr "Próbowanie"
 #: src/views/Edit/index.js:632
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Playersite.js:829
-#: src/views/Publication/Add.js:567
-#: src/views/Publication/Edit.js:601
+#: src/views/Publication/Add.js:590
+#: src/views/Publication/Edit.js:622
 #: src/views/Publication/Player.js:542
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2451,8 +2483,8 @@ msgstr "Wybierz urządzenie:"
 msgid "Select audio source:"
 msgstr "Wybierz źródło dźwięku:"
 
-#: src/views/Publication/Add.js:480
-#: src/views/Publication/Edit.js:520
+#: src/views/Publication/Add.js:512
+#: src/views/Publication/Edit.js:550
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "Wybierz RTMP lub SRT (jeśli jest włączony), aby zmniejszyć opóźnienia."
 
@@ -2526,8 +2558,8 @@ msgstr "URL serwera"
 msgid "Service"
 msgstr "Usługa"
 
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:439
+#: src/views/Publication/Add.js:459
+#: src/views/Publication/Edit.js:469
 msgid "Service name"
 msgstr "Nazwa serwisu"
 
@@ -2620,22 +2652,22 @@ msgstr "Social-login (OAuth2, 2FA)"
 msgid "Socket timeout (microseconds)"
 msgstr "Limit czasu dla gniazd (mikrosekundy)"
 
-#: src/views/Publication/Add.js:392
+#: src/views/Publication/Add.js:424
 msgid "Software"
 msgstr "Oprogramowanie"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:475
-#: src/views/Publication/Edit.js:515
+#: src/views/Publication/Add.js:507
+#: src/views/Publication/Edit.js:545
 msgid "Source"
 msgstr "Źródło"
 
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Add.js:470
-#: src/views/Publication/Edit.js:427
-#: src/views/Publication/Edit.js:510
+#: src/views/Publication/Add.js:447
+#: src/views/Publication/Add.js:502
+#: src/views/Publication/Edit.js:457
+#: src/views/Publication/Edit.js:540
 msgid "Source & Encoding"
 msgstr "Źródło i kodowanie"
 
@@ -2725,7 +2757,7 @@ msgstr ""
 #: src/views/Publication/Services/Rumble.js:100
 #: src/views/Publication/Services/Telegram.js:101
 #: src/views/Publication/Services/Trovo.js:75
-#: src/views/Publication/Services/Twitch.js:151
+#: src/views/Publication/Services/Twitch.js:152
 #: src/views/Publication/Services/Twitter.js:175
 #: src/views/Publication/Services/Vimeo.js:73
 #: src/views/Publication/Services/Wettercom.js:100
@@ -2835,11 +2867,11 @@ msgstr "Usunięcia tego kanału nie można odzyskać. Wszystkie posty w tym kana
 
 #: src/views/Edit/index.js:302
 #: src/views/Edit/Wizard/index.js:176
-#: src/views/Publication/Edit.js:262
+#: src/views/Publication/Edit.js:292
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "Profil wpisu nie jest kompletny. Ustaw źródło wideo i audio."
 
-#: src/views/Publication/Add.js:222
+#: src/views/Publication/Add.js:254
 msgid "The input profile is not complete. Please define a video and/or audio source."
 msgstr "Profil wejściowy nie jest kompletny. Zdefiniuj źródło wideo i/lub audio."
 
@@ -2856,6 +2888,10 @@ msgstr "Maksymalna liczba segmentów na liście odtwarzania. 0 będzie zawierał
 msgid "The noise color"
 msgstr "Kolor szumu"
 
+#: src/misc/AudioTracks.js:197
+msgid "The order of the tracks defines the order of the output audio tracks."
+msgstr ""
+
 #: src/misc/controls/License/index.js:60
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Osoba, która powiązała utwór z tym aktem, przekazała utwór do domeny publicznej, zrzekając się wszystkich praw do utworu na całym świecie zgodnie z prawem autorskim, w tym wszystkich praw pokrewnych i praw sąsiadów, w zakresie dozwolonym przez prawo. Możesz kopiować, modyfikować, rozpowszechniać i wykonywać pracę, nawet w celach komercyjnych, bez pytania o pozwolenie."
@@ -2864,19 +2900,19 @@ msgstr "Osoba, która powiązała utwór z tym aktem, przekazała utwór do dome
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Publiczna nazwa domeny hosta, na którym działa ten Restreamer. Poszczególne nazwy domen oddziel przecinkami."
 
-#: src/views/Publication/Edit.js:317
+#: src/views/Publication/Edit.js:347
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "Nie można usunąć usługi publikowania \"{0}”."
 
-#: src/views/Publication/Add.js:237
+#: src/views/Publication/Add.js:269
 msgid "The publication service \"{0}\" has been created"
 msgstr "Usługa publikowania \"{0}” została utworzona."
 
-#: src/views/Publication/Edit.js:323
+#: src/views/Publication/Edit.js:353
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "Usługa publikowania \"{0}” została usunięta."
 
-#: src/views/Publication/Add.js:235
+#: src/views/Publication/Add.js:267
 msgid "The publication service has been created"
 msgstr "Powstał serwis wydawniczy"
 
@@ -2903,7 +2939,7 @@ msgstr "Wybrany plik jest zbyt duży (<0/>). Dozwolone są tylko <1/>."
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "Wybrany typ pliku ({0}) jest niedozwolony. Dozwolone typy plików to {1}"
 
-#: src/views/Publication/Edit.js:277
+#: src/views/Publication/Edit.js:307
 msgid "The settings for \"{0}\" have been saved"
 msgstr "Ustawienia dla \"{0}” zostały zapisane."
 
@@ -2911,7 +2947,7 @@ msgstr "Ustawienia dla \"{0}” zostały zapisane."
 msgid "The source doesn't provide any audio streams."
 msgstr "Źródło nie zapewnia strumienia audio."
 
-#: src/views/Edit/Profile.js:696
+#: src/views/Edit/Profile.js:684
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
 msgstr "Źródło nie zapewnia strumienia audio. Sprawdź <0>szczegóły sondy</0>."
 
@@ -2923,7 +2959,7 @@ msgstr "Źródło nie zapewnia kompatybilnego strumienia audio."
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
 msgstr "Źródło nie zapewnia kompatybilnego strumienia wideo. Sprawdź <0>wymagania</0>."
 
-#: src/views/Edit/Profile.js:537
+#: src/views/Edit/Profile.js:544
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
 msgstr "Źródło nie zapewnia strumienia wideo. Sprawdź <0>szczegóły sondy</0>."
 
@@ -2974,6 +3010,10 @@ msgstr "Wystąpiły błędy w ustawieniach. Ustawienia nie zostały zapisane."
 msgid "There's no login method available."
 msgstr "Nie ma dostępnej metody połączenia."
 
+#: src/misc/AudioTracks.js:98
+msgid "This audio stream is already used by another track."
+msgstr ""
+
 #: src/views/Publication/Services/Dummy.js:26
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "Jest to fikcyjna usługa, która wyjaśnia Ci koncepcje usługi."
@@ -3013,6 +3053,10 @@ msgstr "Ta licencja umożliwia ponownemu użytkownikowi rozpowszechnianie, remik
 #: src/views/Edit/Sources/Network.js:781
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Ten protokół jest nieznany lub nie jest obsługiwany przez dostępne binarki FFmpeg."
+
+#: src/misc/AudioTracks.js:92
+msgid "This service supports only one audio track. Additional tracks are ignored."
+msgstr ""
 
 #: src/views/Edit/index.js:657
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
@@ -3063,6 +3107,15 @@ msgstr "Token"
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "Górne pole"
+
+#: src/misc/AudioTracks.js:138
+#: src/views/Edit/ProfileSummary.js:107
+msgid "Track {0}"
+msgstr ""
+
+#: src/views/Publication/Services/Twitch.js:161
+msgid "Track 1 is sent as the live audio, track 2 as the VOD audio (Twitch VOD track)."
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3332,7 +3385,7 @@ msgstr "aksamitny"
 msgid "Vertical Flip"
 msgstr "Przerzucanie pionowe"
 
-#: src/views/Publication/Add.js:502
+#: src/views/Publication/Add.js:534
 msgid "Video"
 msgstr "Wideo"
 
@@ -3345,9 +3398,9 @@ msgstr "Wideo"
 msgid "Video device"
 msgstr "Urządzenie wideo"
 
-#: src/views/Edit/Profile.js:490
-#: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:540
+#: src/views/Edit/Profile.js:497
+#: src/views/Edit/ProfileSummary.js:67
+#: src/views/Publication/Edit.js:570
 msgid "Video settings"
 msgstr "Ustawienia wideo"
 
@@ -3434,7 +3487,7 @@ msgstr "Zmieniłeś konfigurację. Aby zmiany odniosły skutek, musisz ponownie 
 msgid "You have to reconnect manually"
 msgstr "Musisz ponownie połączyć się ręcznie"
 
-#: src/views/Publication/Edit.js:482
+#: src/views/Publication/Edit.js:512
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "Masz niezapisane zmiany. Utwórz ich kopię zapasową, zanim będziesz mógł ponownie kontrolować usługę."
 

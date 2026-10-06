@@ -81,6 +81,7 @@ export function validateRequirements(requires) {
 		formats: [],
 		devices: [],
 		codecs: {},
+		audio: {},
 		...requires,
 	};
 
@@ -88,6 +89,13 @@ export function validateRequirements(requires) {
 		audio: [],
 		video: [],
 		...requires.codecs,
+	};
+
+	// min/max number of audio tracks. 0 = unlimited
+	requires.audio = {
+		min: 0,
+		max: 0,
+		...requires.audio,
 	};
 
 	return requires;
@@ -357,4 +365,195 @@ export function preselectProfile(profile, type, streams, codecs, skills) {
 	}
 
 	return profile;
+}
+
+/**
+ * selectTrackEncoder selects the stream and a matching encoder for one
+ * profile track (audio or video). If the codec of the stream is a target
+ * codec, the stream is passed through (copy), otherwise the first available
+ * encoder for one of the target codecs is used.
+ *
+ * @param {*} track A profile track ({stream, encoder, decoder, filter})
+ * @param {*} type Either 'audio' or 'video'
+ * @param {*} streams List of available streams
+ * @param {*} index Index of the stream within streams
+ * @param {*} codecs List of target codecs
+ * @param {*} skills FFmpeg skills
+ * @returns {object} The updated track
+ */
+export function selectTrackEncoder(track, type, streams, index, codecs, skills) {
+	const encoders = skills.encoders[type];
+
+	track.source = 0;
+	track.stream = index;
+	track.encoder.coder = 'none';
+
+	if (!codecs.includes(streams[index].codec)) {
+		// The codec doesn't match. Select the first available coder for one of the target codecs.
+		for (let codec of codecs) {
+			if (codec === 'copy') {
+				continue;
+			}
+
+			let coder = null;
+
+			if (type === 'audio') {
+				coder = Coders.Audio.GetCoderForCodec(codec, encoders);
+			} else if (type === 'video') {
+				coder = Coders.Video.GetCoderForCodec(codec, encoders);
+			}
+
+			if (coder === null) {
+				track.encoder.coder = 'none';
+			} else {
+				const defaults = coder.defaults(streams[index], skills);
+				track.encoder.coder = coder.coder;
+				track.encoder.settings = defaults.settings;
+				track.encoder.mapping = defaults.mapping;
+				break;
+			}
+		}
+	} else {
+		// The codec matches. Select the copy coder.
+		track.encoder.coder = 'copy';
+
+		let coder = type === 'audio' ? Coders.Audio.Get('copy') : Coders.Video.Get('copy');
+
+		const defaults = coder.defaults(streams[index], skills);
+
+		track.encoder.settings = defaults.settings;
+		track.encoder.mapping = defaults.mapping;
+	}
+
+	return track;
+}
+
+/**
+ * preselectAudioTracks validates an ordered list of audio tracks against the
+ * available streams and codecs. Tracks whose stream vanished are dropped, the
+ * list is truncated to maxTracks, and an empty list gets exactly one track
+ * (the previous single-audio behavior) as long as an audio stream exists.
+ *
+ * @param {*} tracks Ordered list of audio tracks
+ * @param {*} streams List of available streams
+ * @param {*} codecs List of target codecs
+ * @param {*} skills FFmpeg skills
+ * @param {*} maxTracks Maximum number of tracks (0 = unlimited)
+ * @returns {array} The ordered list of audio tracks
+ */
+export function preselectAudioTracks(tracks, streams, codecs, skills, maxTracks = 0) {
+	if (!Array.isArray(tracks)) {
+		tracks = [];
+	}
+
+	let next = tracks.filter((t) => t.stream >= 0 && t.stream < streams.length && streams[t.stream].type === 'audio');
+
+	next = next.map((t) => preselectProfile(t, 'audio', streams, codecs, skills));
+
+	if (maxTracks > 0 && next.length > maxTracks) {
+		next = next.slice(0, maxTracks);
+	}
+
+	if (next.length === 0) {
+		const track = preselectProfile(M.initAudioTrack({}), 'audio', streams, codecs, skills);
+
+		if (track.stream >= 0) {
+			track.source = 0;
+			next = [track];
+		}
+	}
+
+	return next;
+}
+
+/**
+ * newAudioTrack creates a new audio track that selects the first audio stream
+ * that is not part of the given track list yet.
+ *
+ * @param {*} tracks Ordered list of audio tracks
+ * @param {*} streams List of available streams
+ * @param {*} codecs List of target codecs
+ * @param {*} skills FFmpeg skills
+ * @returns {object|null} A new audio track or null if no audio stream exists
+ */
+export function newAudioTrack(tracks, streams, codecs, skills) {
+	const used = new Set((Array.isArray(tracks) ? tracks : []).map((t) => t.stream));
+
+	let index = -1;
+
+	for (let i = 0; i < streams.length; i++) {
+		if (streams[i].type !== 'audio') {
+			continue;
+		}
+
+		if (!used.has(i)) {
+			index = i;
+			break;
+		}
+	}
+
+	if (index === -1) {
+		for (let i = 0; i < streams.length; i++) {
+			if (streams[i].type === 'audio') {
+				index = i;
+				break;
+			}
+		}
+	}
+
+	if (index === -1) {
+		return null;
+	}
+
+	const track = M.initAudioTrack({});
+	track.source = 0;
+	track.stream = index;
+
+	return preselectProfile(track, 'audio', streams, codecs, skills);
+}
+
+/**
+ * checkAudioTracks validates the selected audio tracks against the service
+ * requirements and returns a list of messages.
+ *
+ * @param {*} tracks Ordered list of audio tracks
+ * @param {*} requires Requirement object of the service
+ * @param {*} skills FFmpeg skills
+ * @returns {array} List of {level: 'warning'|'error', id} messages
+ */
+export function checkAudioTracks(tracks, requires, skills) {
+	const messages = [];
+
+	requires = validateRequirements(requires);
+
+	if (!Array.isArray(tracks)) {
+		tracks = [];
+	}
+
+	if (requires.audio.max > 0 && tracks.length > requires.audio.max) {
+		messages.push({level: 'warning', id: 'audio-tracks-max'});
+	}
+
+	if (tracks.length > 1 && requires.formats.includes('flv')) {
+		const major = parseInt(skills.ffmpeg.version_major, 10);
+
+		if (Number.isNaN(major) || major < 8) {
+			messages.push({level: 'error', id: 'audio-tracks-flv-ffmpeg'});
+		} else {
+			messages.push({level: 'warning', id: 'audio-tracks-flv-legacy'});
+		}
+	}
+
+	const seen = new Set();
+
+	for (const track of tracks) {
+		if (seen.has(track.stream)) {
+			messages.push({level: 'warning', id: 'audio-tracks-duplicate'});
+			break;
+		}
+
+		seen.add(track.stream);
+	}
+
+	return messages;
 }

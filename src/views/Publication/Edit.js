@@ -19,6 +19,7 @@ import Typography from '@mui/material/Typography';
 import * as helper from './helper';
 import * as M from '../../utils/metadata';
 import useInterval from '../../hooks/useInterval';
+import AudioTracks from '../../misc/AudioTracks';
 import BoxText from '../../misc/BoxText';
 import DebugModal from '../../misc/modals/Debug';
 import Dialog from '../../misc/modals/Dialog';
@@ -166,7 +167,13 @@ export default function Edit(props) {
 
 			const profiles = settings.profiles;
 			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', ingest.streams, serviceSkills.codecs.video, skills);
-			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', ingest.streams, serviceSkills.codecs.audio, skills);
+			profiles[0].audio = helper.preselectAudioTracks(
+				profiles[0].audio,
+				ingest.streams,
+				serviceSkills.codecs.audio,
+				skills,
+				helper.validateRequirements(s.requires).audio.max,
+			);
 
 			settings.profiles = profiles;
 			settings.streams = M.createOutputStreams(sources, profiles, false);
@@ -236,6 +243,29 @@ export default function Edit(props) {
 		if (!automatic) {
 			setUnsavedChanges(true);
 		}
+	};
+
+	const handleAudioTracks = (tracks) => {
+		const profiles = $settings.profiles;
+
+		profiles[0].audio = tracks;
+
+		const streams = M.createOutputStreams($sources, profiles, false);
+
+		let outputs = $settings.outputs;
+
+		if ('createOutputs' in $service) {
+			outputs = $service.createOutputs($settings.settings, $serviceSkills, $metadata, streams);
+		}
+
+		setSettings({
+			...$settings,
+			profiles: profiles,
+			streams: streams,
+			outputs: outputs,
+		});
+
+		setUnsavedChanges(true);
 	};
 
 	const handleFilter = (type) => (filter, automatic) => {
@@ -566,25 +596,16 @@ export default function Edit(props) {
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
-									<EncodingSelect
-										type="audio"
+									<AudioTracks
 										streams={$sources[0].streams}
-										profile={$settings.profiles[0].audio}
+										tracks={$settings.profiles[0].audio}
 										codecs={$serviceSkills.codecs.audio}
 										skills={$skills}
-										onChange={handleEncoding('audio')}
+										maxTracks={helper.validateRequirements($service.requires).audio.max}
+										warnings={helper.checkAudioTracks($settings.profiles[0].audio, $service.requires, $skills)}
+										onChange={handleAudioTracks}
 									/>
 								</Grid>
-								{$settings.profiles[0].audio.encoder.coder !== 'copy' && (
-									<Grid item xs={12}>
-										<FilterSelect
-											type="audio"
-											profile={$settings.profiles[0].audio}
-											availableFilters={$skills.filter}
-											onChange={handleFilter('audio')}
-										/>
-									</Grid>
-								)}
 							</TabContent>
 						</TabPanel>
 					</TabsVerticalGrid>

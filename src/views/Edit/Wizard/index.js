@@ -135,7 +135,7 @@ export default function Wizard(props) {
 					...profile,
 				});
 
-				if (profile.audio.encoder.coder === 'none') {
+				if (profile.audio.length === 0 || profile.audio.every((a) => a.encoder.coder === 'none')) {
 					status = 'nocoder';
 				}
 			}
@@ -384,24 +384,19 @@ export default function Wizard(props) {
 			videoprofile.decoder.settings = defaults.settings;
 			videoprofile.decoder.mapping = defaults.mapping;
 
-			const audioprofile = $profile.audio;
-			audioprofile.source = -1;
+			// use all audio tracks of the video source by default
+			const audioprofile = M.preselectProfile('audio', streams, {...$profile, audio: []}, $skills.encoders);
+			const audiotracks = audioprofile.audio;
 
-			// set default for first video audio track
-			for (let s of streams) {
-				if (s.type !== 'audio') {
-					continue;
-				}
-
-				audioprofile.source = 0;
-				audioprofile.stream = s.stream;
-
-				break;
+			for (const audio of audiotracks) {
+				audio.source = 0;
 			}
 
 			// set default for silence audio track if the video doesn't have an audio track
-			if (audioprofile.source === -1) {
-				audioprofile.source = 1;
+			if (audiotracks.length === 0) {
+				const audio = M.initAudioTrack({});
+				audio.source = 1;
+				audiotracks.push(audio);
 
 				const fullSource = FullSources.Get('virtualaudio');
 				const source = $sources.audio;
@@ -422,7 +417,7 @@ export default function Wizard(props) {
 
 			setProfile({
 				...$profile,
-				audio: audioprofile,
+				audio: audiotracks,
 				video: profile,
 			});
 
@@ -540,7 +535,7 @@ export default function Wizard(props) {
 		);
 	} else if ($step === 'AUDIO SETTINGS') {
 		handleNext = async () => {
-			if ($profile.audio.source === 1) {
+			if ($profile.audio.length !== 0 && $profile.audio[0].source === 1) {
 				const source = $sources.audio;
 
 				// probing ...
@@ -571,12 +566,13 @@ export default function Wizard(props) {
 		const handleAudioStreamChange = (event) => {
 			const value = event.target.value;
 
-			const profile = $profile.audio;
-			profile.stream = parseInt(value);
+			const audio = $profile.audio.length !== 0 ? $profile.audio[0] : M.initAudioTrack({});
+			audio.source = 0;
+			audio.stream = parseInt(value);
 
 			setProfile({
 				...$profile,
-				audio: profile,
+				audio: [audio],
 			});
 		};
 
@@ -596,15 +592,26 @@ export default function Wizard(props) {
 		const handleStream = (event) => {
 			const value = event.target.value;
 
-			const profile = $profile.audio;
+			let audiotracks = [];
 			let source = null;
 
 			if (value === 'video') {
-				profile.source = 0;
+				for (let s of $sources.video.streams) {
+					if (s.type !== 'audio') {
+						continue;
+					}
+
+					const audio = M.initAudioTrack({});
+					audio.source = 0;
+					audio.stream = s.stream;
+					audiotracks.push(audio);
+				}
 
 				source = null;
 			} else if (value === 'alsa') {
-				profile.source = 1;
+				const audio = M.initAudioTrack({});
+				audio.source = 1;
+				audiotracks.push(audio);
 
 				// The first ALSA device is selected by default
 				let address = '';
@@ -623,7 +630,9 @@ export default function Wizard(props) {
 				});
 				source.inputs = fullSource.func.createInputs(source.settings);
 			} else if (value === 'silence') {
-				profile.source = 1;
+				const audio = M.initAudioTrack({});
+				audio.source = 1;
+				audiotracks.push(audio);
 
 				source = M.initSource('audio', null);
 
@@ -636,10 +645,6 @@ export default function Wizard(props) {
 					sampling: 44100,
 				});
 				source.inputs = fullSource.func.createInputs(source.settings);
-			} else {
-				profile.source = -1;
-
-				source = null;
 			}
 
 			setSources({
@@ -649,11 +654,10 @@ export default function Wizard(props) {
 
 			setProfile({
 				...$profile,
-				audio: profile,
+				audio: audiotracks,
 			});
 		};
 
-		const profile = $profile.audio;
 		const source = $sources.audio;
 
 		let streamList = [];
@@ -689,13 +693,9 @@ export default function Wizard(props) {
 
 		let radioValue = 'video';
 
-		if (profile.source === 0) {
-			// video input has an audio track
-			// options:
-			// 1. use audio track (and encode it if it is not compatible)
-			// 2. add silence
-			// 3. don't use any audio
-		} else if (profile.source === 1) {
+		if ($profile.audio.length === 0) {
+			radioValue = 'none';
+		} else if ($profile.audio[0].source === 1) {
 			if ($sources.audio.type === 'alsa') {
 				// ALSA audio device
 				radioValue = 'alsa';
@@ -703,13 +703,6 @@ export default function Wizard(props) {
 				// silence
 				radioValue = 'silence';
 			}
-		} else {
-			radioValue = 'none';
-			// video input doesn't have an audio track
-
-			// options:
-			// 1. add silence
-			// 2. don't use any audio
 		}
 
 		return (
@@ -723,7 +716,7 @@ export default function Wizard(props) {
 				onSource={handleStream}
 				streamList={streamList}
 				deviceList={deviceList}
-				stream={profile.stream}
+				stream={$profile.audio.length !== 0 ? $profile.audio[0].stream : -1}
 				onAudioStreamChange={handleAudioStreamChange}
 				address={source.settings.address}
 				onAudioDeviceChange={handleAudioDeviceChange}
@@ -733,37 +726,35 @@ export default function Wizard(props) {
 		return <Probe onAbort={handleAbort} />;
 	} else if ($step === 'AUDIO RESULT') {
 		handleNext = () => {
-			let stream = null;
-			const profile = $profile.audio;
+			const audiotracks = [];
 
-			if (profile.source === 0) {
-				stream = $sources.video.streams[profile.stream];
-			} else if (profile.source === 1) {
-				stream = $sources.audio.streams[profile.stream];
-			} else {
-				profile.source = -1;
-				profile.stream = -1;
-			}
+			for (const audio of $profile.audio) {
+				let stream = null;
 
-			if (stream !== null) {
-				const compatible = isCompatible(stream);
-
-				if (compatible === true) {
-					profile.coder = 'copy';
-				} else {
-					profile.coder = 'aac';
+				if (audio.source === 0) {
+					stream = $sources.video.streams[audio.stream];
+				} else if (audio.source === 1) {
+					stream = $sources.audio.streams[audio.stream];
 				}
 
-				const encoder = Encoders.Audio.Get(profile.coder);
+				if (stream === undefined || stream === null) {
+					continue;
+				}
+
+				const coder = isCompatible(stream) ? 'copy' : 'aac';
+				const encoder = Encoders.Audio.Get(coder);
 				const defaults = encoder.defaults(stream, $skills);
 
-				profile.encoder.settings = defaults.settings;
-				profile.encoder.mapping = defaults.mapping;
+				audio.encoder.coder = coder;
+				audio.encoder.settings = defaults.settings;
+				audio.encoder.mapping = defaults.mapping;
+
+				audiotracks.push(audio);
 			}
 
 			setProfile({
 				...$profile,
-				audio: profile,
+				audio: audiotracks,
 			});
 
 			setStep('META');

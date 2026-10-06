@@ -6,6 +6,7 @@ import { Trans } from '@lingui/macro';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 import FormInlineButton from '../../../misc/FormInlineButton';
 import Select from '../../../misc/Select';
@@ -154,6 +155,11 @@ function Service(props) {
 				<FormInlineButton target="blank" href={stream_key_link} component="a">
 					<Trans>GET</Trans>
 				</FormInlineButton>
+			</Grid>
+			<Grid item xs={12}>
+				<Typography variant="caption">
+					<Trans>Track 1 is sent as the live audio, track 2 as the VOD audio (Twitch VOD track).</Trans>
+				</Typography>
 			</Grid>
 		</Grid>
 	);

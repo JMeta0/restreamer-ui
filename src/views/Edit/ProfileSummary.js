@@ -10,6 +10,7 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import EditIcon from '@mui/icons-material/Edit';
 
 import * as M from '../../utils/metadata';
+import BoxText from '../../misc/BoxText';
 import Summary from './Summary';
 
 function IconWizard(props) {
@@ -91,7 +92,27 @@ export default function ProfileSummary(props) {
 				</Typography>
 			</Grid>
 			<Grid item xs={12}>
-				<Summary type="audio" sources={props.sources} profile={profile.audio} />
+				{profile.audio.length === 0 && (
+					<BoxText>
+						<Typography variant="body1">
+							<Trans>No audio track selected. The publication will be sent without audio.</Trans>
+						</Typography>
+					</BoxText>
+				)}
+				{profile.audio.map((track, i) => (
+					<Grid container spacing={1} key={i}>
+						{profile.audio.length > 1 && (
+							<Grid item xs={12}>
+								<Typography variant="subtitle2">
+									<Trans>Track {i + 1}</Trans>
+								</Typography>
+							</Grid>
+						)}
+						<Grid item xs={12}>
+							<Summary type="audio" sources={props.sources} profile={track} />
+						</Grid>
+					</Grid>
+				))}
 			</Grid>
 		</Grid>
 	);

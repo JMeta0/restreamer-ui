@@ -17,8 +17,8 @@ msgstr ""
 msgid "<0>Compatibility list</0>"
 msgstr "<0>Λίστα συμβατότητας</0>"
 
-#: src/views/Edit/Profile.js:560
-#: src/views/Edit/Profile.js:719
+#: src/views/Edit/Profile.js:567
+#: src/views/Edit/Profile.js:699
 msgid "<0>Show probe details</0>"
 msgstr "<0>Εμφάνιση λεπτομερειών ανιχνευτή</0>"
 
@@ -45,9 +45,9 @@ msgstr "7 (+ κατακερματισμένη μορφή MP4)"
 #: src/misc/ChannelList.js:412
 #: src/views/Edit/index.js:647
 #: src/views/Edit/index.js:666
-#: src/views/Edit/Profile.js:599
+#: src/views/Edit/Profile.js:606
 #: src/views/Edit/Wizard/Abort.js:14
-#: src/views/Publication/Edit.js:631
+#: src/views/Publication/Edit.js:652
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
@@ -66,6 +66,10 @@ msgstr "Προσθέστε"
 msgid "Add Audio"
 msgstr ""
 
+#: src/misc/AudioTracks.js:204
+msgid "Add audio track"
+msgstr ""
+
 #: src/views/Playersite.js:733
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
 msgstr "Προσθέστε εξωτερικά widgets και στυλ στον ιστότοπο δημοσίευσης. Μπορείτε να βρείτε μερικά παραδείγματα στη σελίδα βοήθειας."
@@ -74,7 +78,7 @@ msgstr "Προσθέστε εξωτερικά widgets και στυλ στον �
 msgid "Add new channel"
 msgstr "Προσθήκη νέου καναλιού"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:395
 msgid "Add Publication"
 msgstr "Προσθήκη δημοσίευσης"
 
@@ -82,7 +86,7 @@ msgstr "Προσθήκη δημοσίευσης"
 #~ msgid "Add Stream"
 #~ msgstr ""
 
-#: src/views/Publication/Add.js:366
+#: src/views/Publication/Add.js:398
 msgid "Add: {0}"
 msgstr "Προσθήκη: {0}"
 
@@ -101,7 +105,7 @@ msgstr ""
 #: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
-#: src/views/Publication/Services/Icecast.js:162
+#: src/views/Publication/Services/Icecast.js:168
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:170
@@ -145,7 +149,7 @@ msgstr "Προηγμένη παρακολούθηση"
 #: src/views/Edit/Sources/Network.js:518
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
-#: src/views/Publication/Services/Icecast.js:172
+#: src/views/Publication/Services/Icecast.js:178
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:176
 #: src/views/Publication/Services/RTMP.js:174
@@ -168,7 +172,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "Ειδοποίηση μέσω email"
 
-#: src/views/Publication/Add.js:386
+#: src/views/Publication/Add.js:418
 msgid "All"
 msgstr "Όλα"
 
@@ -218,7 +222,7 @@ msgstr "Εφαρμογή"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "Είστε σίγουροι ότι θέλετε να διακόψετε τον οδηγό;"
 
-#: src/views/Publication/Add.js:527
+#: src/views/Publication/Add.js:559
 msgid "Audio"
 msgstr "Ήχος"
 
@@ -236,9 +240,9 @@ msgstr "Συσκευή ήχου"
 msgid "Audio from device"
 msgstr "Ήχος από συσκευή"
 
-#: src/views/Edit/Profile.js:614
-#: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:565
+#: src/views/Edit/Profile.js:621
+#: src/views/Edit/ProfileSummary.js:91
+#: src/views/Publication/Edit.js:595
 msgid "Audio settings"
 msgstr "Ρυθμίσεις ήχου"
 
@@ -291,14 +295,14 @@ msgstr "Ίδρυμα AVFoundation"
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
-#: src/views/Edit/Profile.js:760
+#: src/views/Edit/Profile.js:729
 #: src/views/Edit/Wizard/Abort.js:25
 #: src/views/Edit/Wizard/Audio.js:109
 #: src/views/Edit/Wizard/License.js:38
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:561
+#: src/views/Publication/Add.js:584
 msgid "Back"
 msgstr "Πίσω"
 
@@ -422,7 +426,7 @@ msgstr "Κανάλια"
 msgid "Check for updates"
 msgstr "Έλεγχος για ενημερώσεις"
 
-#: src/views/Publication/Add.js:316
+#: src/views/Publication/Add.js:348
 msgid "Check the requirements"
 msgstr "Ελέγξτε τις απαιτήσεις"
 
@@ -475,9 +479,9 @@ msgstr "Chunk"
 #: src/misc/modals/Hint.js:181
 #: src/views/Edit/index.js:621
 #: src/views/Playersite.js:823
-#: src/views/Publication/Add.js:404
-#: src/views/Publication/Add.js:558
-#: src/views/Publication/Edit.js:595
+#: src/views/Publication/Add.js:436
+#: src/views/Publication/Add.js:581
+#: src/views/Publication/Edit.js:616
 #: src/views/Publication/Player.js:536
 #: src/views/Settings.js:2219
 msgid "Close"
@@ -735,12 +739,12 @@ msgstr "Καθυστέρηση (ms)"
 #: src/views/Edit/index.js:635
 #: src/views/Edit/index.js:671
 #: src/views/Playersite.js:506
-#: src/views/Publication/Edit.js:604
-#: src/views/Publication/Edit.js:636
+#: src/views/Publication/Edit.js:625
+#: src/views/Publication/Edit.js:657
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: src/views/Publication/Edit.js:641
+#: src/views/Publication/Edit.js:662
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "Η διαγραφή μιας υπηρεσίας δημοσίευσης δεν μπορεί να αντιστραφεί. Η δημοσίευση σταματά αμέσως."
 
@@ -803,7 +807,7 @@ msgstr "Θέλετε πραγματικά να επανεκκινήσετε τη
 msgid "Do you want to delete \"{0}\"?"
 msgstr "Θέλετε να διαγράψετε το \"{0}\";"
 
-#: src/views/Publication/Edit.js:628
+#: src/views/Publication/Edit.js:649
 msgid "Do you want to delete {title}?"
 msgstr "Θέλετε να διαγράψετε το {title};"
 
@@ -818,7 +822,7 @@ msgstr "Έγγραφα"
 
 #: src/views/Publication/Services/DASH.js:501
 #: src/views/Publication/Services/HLS.js:496
-#: src/views/Publication/Services/Icecast.js:240
+#: src/views/Publication/Services/Icecast.js:246
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:365
 #: src/views/Publication/Services/RTMP.js:286
@@ -848,7 +852,7 @@ msgstr "Επεξεργασία"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "Επεξεργαστείτε τις πηγές ήχου και βίντεο για τη ζωντανή ροή. Προσθέστε μια περιγραφή και ορίστε την επιθυμητή άδεια χρήσης περιεχομένου."
 
-#: src/views/Publication/Edit.js:417
+#: src/views/Publication/Edit.js:447
 msgid "Edit: {title}"
 msgstr "Επεξεργασία: {title}"
 
@@ -927,8 +931,8 @@ msgid "Encoder"
 msgstr "Κωδικοποιητής"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:492
-#: src/views/Publication/Edit.js:528
+#: src/views/Publication/Add.js:524
+#: src/views/Publication/Edit.js:558
 msgid "Encoding"
 msgstr "Κωδικοποίηση"
 
@@ -1010,7 +1014,7 @@ msgstr "Επέκταση υποσέλιδου"
 msgid "Extend header"
 msgstr "Επέκταση κεφαλίδας"
 
-#: src/views/Publication/Add.js:229
+#: src/views/Publication/Add.js:261
 msgid "Failed to create publication service ({0})"
 msgstr "Αποτυχία δημιουργίας υπηρεσίας δημοσίευσης ({0})"
 
@@ -1018,8 +1022,8 @@ msgstr "Αποτυχία δημιουργίας υπηρεσίας δημοσί�
 msgid "Failed to create publication website files."
 msgstr "Απέτυχε η δημιουργία αρχείων ιστότοπου δημοσίευσης."
 
-#: src/views/Edit/Profile.js:512
-#: src/views/Edit/Profile.js:671
+#: src/views/Edit/Profile.js:519
+#: src/views/Edit/Profile.js:659
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "Απέτυχε η διερεύνηση της πηγής. Ελέγξτε τις λεπτομέρειες του <0>ανιχνευτή</0>."
 
@@ -1039,7 +1043,7 @@ msgstr "Απέτυχε να σταματήσει η διαδικασία"
 msgid "Failed to store player size setting."
 msgstr "Απέτυχε η αποθήκευση της ρύθμισης μεγέθους παίκτη."
 
-#: src/views/Publication/Edit.js:269
+#: src/views/Publication/Edit.js:299
 msgid "Failed to store publication service ({0})"
 msgstr "Απέτυχε η αποθήκευση της υπηρεσίας δημοσίευσης ({0})"
 
@@ -1077,7 +1081,7 @@ msgstr "Διαδρομή αρχείου"
 msgid "Filter"
 msgstr "Φίλτρο"
 
-#: src/views/Edit/Profile.js:768
+#: src/views/Edit/Profile.js:737
 msgid "Finish"
 msgstr "Τέλος"
 
@@ -1149,11 +1153,11 @@ msgstr "Συχνότητα (Hz)"
 #: src/views/Edit/Sources/Network.js:612
 #: src/views/Playersite.js:328
 #: src/views/Playersite.js:341
-#: src/views/Publication/Add.js:414
-#: src/views/Publication/Edit.js:426
+#: src/views/Publication/Add.js:446
+#: src/views/Publication/Edit.js:456
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
-#: src/views/Publication/Services/Icecast.js:179
+#: src/views/Publication/Services/Icecast.js:185
 #: src/views/Publication/Services/Image2.js:139
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
@@ -1174,7 +1178,7 @@ msgstr "Γενικά"
 #: src/views/Publication/Services/Restream.js:120
 #: src/views/Publication/Services/Rumble.js:107
 #: src/views/Publication/Services/Trovo.js:79
-#: src/views/Publication/Services/Twitch.js:155
+#: src/views/Publication/Services/Twitch.js:156
 #: src/views/Publication/Services/Twitter.js:179
 #: src/views/Publication/Services/Wettercom.js:107
 #: src/views/Publication/Services/Youtube.js:193
@@ -1279,8 +1283,8 @@ msgstr "Εκτύπωση"
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
 msgstr "Εκτός από τη συσκευή αναπαραγωγής, το Restreamer προσφέρει μια πλήρη σελίδα προορισμού, την οποία μπορείτε να χρησιμοποιήσετε για να παρουσιάσετε τη ζωντανή ροή σας εύκολα και γρήγορα."
 
-#: src/views/Edit/Profile.js:521
-#: src/views/Edit/Profile.js:680
+#: src/views/Edit/Profile.js:528
+#: src/views/Edit/Profile.js:668
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
 msgstr ""
 
@@ -1294,7 +1298,7 @@ msgstr "Στη μνήμη"
 msgid "In-memory storage"
 msgstr "Αποθήκευση στη μνήμη"
 
-#: src/views/Publication/Add.js:313
+#: src/views/Publication/Add.js:345
 msgid "Incompatible"
 msgstr "Μη συμβατό"
 
@@ -1389,8 +1393,8 @@ msgid "Life color"
 msgstr "Χρώμα ζωής"
 
 #: src/views/Edit/index.js:565
-#: src/views/Publication/Add.js:458
-#: src/views/Publication/Edit.js:470
+#: src/views/Publication/Add.js:490
+#: src/views/Publication/Edit.js:500
 msgid "Limits"
 msgstr "Όρια"
 
@@ -1455,7 +1459,7 @@ msgstr "Live-Streaming στην υπηρεσία PeerTube v3+ RTMP/S."
 msgid "Live-Streaming to Trovo Live RTMP Service."
 msgstr "Live-Streaming στην υπηρεσία Trovo Live RTMP."
 
-#: src/views/Publication/Services/Twitch.js:17
+#: src/views/Publication/Services/Twitch.js:18
 msgid "Live-Streaming to Twitch Live RTMP Service."
 msgstr "Live-Streaming στην υπηρεσία Twitch Live RTMP."
 
@@ -1648,7 +1652,7 @@ msgid "Mold"
 msgstr "Μούχλα"
 
 #: src/views/Publication/Services/Facebook.js:17
-#: src/views/Publication/Services/Twitch.js:18
+#: src/views/Publication/Services/Twitch.js:19
 #: src/views/Publication/Services/Vimeo.js:14
 msgid "More about licenses here"
 msgstr "Περισσότερα για τις άδειες εδώ"
@@ -1664,6 +1668,24 @@ msgstr "Περισσότερα για τα πνευματικά δικαιώμα
 #: src/views/Publication/Services/Youtube.js:31
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "Περισσότερα για τα πνευματικά δικαιώματα του YouTube <0>εδώ</0>."
+
+#: src/misc/AudioTracks.js:96
+msgid "Most players (and legacy RTMP/FLV endpoints) only play the first audio track. Additional tracks are e.g. used by Twitch for the VOD audio."
+msgstr ""
+
+#: src/misc/AudioTracks.js:153
+#: src/misc/AudioTracks.js:154
+msgid "Move audio track down"
+msgstr ""
+
+#: src/misc/AudioTracks.js:144
+#: src/misc/AudioTracks.js:145
+msgid "Move audio track up"
+msgstr ""
+
+#: src/misc/AudioTracks.js:94
+msgid "Multiple audio tracks for FLV-based outputs require FFmpeg 8 or newer."
+msgstr ""
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
@@ -1718,7 +1740,7 @@ msgstr "Πηγή δικτύου"
 msgid "Next"
 msgstr "Επόμενο"
 
-#: src/views/Edit/Profile.js:602
+#: src/views/Edit/Profile.js:609
 msgid "Next: Audio"
 msgstr "Επόμενος: Ήχος"
 
@@ -1738,6 +1760,11 @@ msgstr "Χωρίς ήχο"
 #: src/views/Edit/StreamSelect.js:62
 msgid "No audio stream available"
 msgstr "Δεν υπάρχει διαθέσιμη ροή ήχου"
+
+#: src/misc/AudioTracks.js:189
+#: src/views/Edit/ProfileSummary.js:98
+msgid "No audio track selected. The publication will be sent without audio."
+msgstr ""
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:70
 #: src/views/Edit/Wizard/Sources/V4L.js:99
@@ -1855,7 +1882,7 @@ msgstr "Σύνθημα πρόσβασης για κρυπτογράφηση SRT.
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "Η φράση πρόσβασης πρέπει να έχει μήκος μεταξύ 10 και 79 χαρακτήρων"
 
-#: src/views/Publication/Edit.js:533
+#: src/views/Publication/Edit.js:563
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "Το Passthrough (αντιγραφή) θα πρέπει να απενεργοποιείται μόνο εάν είναι απαραίτητο. Κάθε κωδικοποίηση απαιτεί πρόσθετους πόρους CPU/GPU."
 
@@ -1904,7 +1931,7 @@ msgstr ""
 msgid "Plan: <0>Starter</0>"
 msgstr "Σχέδιο: <0>Starter</0>"
 
-#: src/views/Publication/Add.js:389
+#: src/views/Publication/Add.js:421
 msgid "Platforms"
 msgstr "Πλατφόρμες"
 
@@ -1990,7 +2017,7 @@ msgstr "Παρακαλούμε επικοινωνήστε με τον φορέα
 msgid "Please select a file to upload."
 msgstr "Παρακαλούμε επιλέξτε ένα αρχείο για να το ανεβάσετε."
 
-#: src/views/Publication/Add.js:497
+#: src/views/Publication/Add.js:529
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "Παρακαλούμε χρησιμοποιήστε το \"Passthrough (αντίγραφο)\" εάν είναι δυνατόν. Η κωδικοποίηση απαιτεί πρόσθετους πόρους CPU/GPU."
 
@@ -2049,27 +2076,27 @@ msgid "Probe"
 msgstr "Ανιχνευτής"
 
 #: src/views/Edit/index.js:554
-#: src/views/Publication/Add.js:447
-#: src/views/Publication/Edit.js:459
+#: src/views/Publication/Add.js:479
+#: src/views/Publication/Edit.js:489
 msgid "Process"
 msgstr "Διαδικασία"
 
-#: src/views/Publication/Add.js:416
-#: src/views/Publication/Edit.js:428
+#: src/views/Publication/Add.js:448
+#: src/views/Publication/Edit.js:458
 msgid "Process control"
 msgstr "Έλεγχος διεργασιών"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:467
-#: src/views/Publication/Edit.js:494
-#: src/views/Publication/Edit.js:613
+#: src/views/Publication/Edit.js:524
+#: src/views/Publication/Edit.js:634
 msgid "Process details"
 msgstr "Λεπτομέρειες διαδικασίας"
 
 #: src/views/Main/index.js:454
 #: src/views/Main/index.js:475
-#: src/views/Publication/Edit.js:497
-#: src/views/Publication/Edit.js:621
+#: src/views/Publication/Edit.js:527
+#: src/views/Publication/Edit.js:642
 msgid "Process report"
 msgstr "Αναφορά διαδικασίας"
 
@@ -2099,7 +2126,7 @@ msgstr "Προφίλ"
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
 #: src/views/Publication/Services/HLS.js:175
-#: src/views/Publication/Services/Icecast.js:156
+#: src/views/Publication/Services/Icecast.js:162
 #: src/views/Publication/Services/Image2.js:120
 #: src/views/Publication/Services/Linkedin.js:84
 #: src/views/Publication/Services/MPEGTS.js:164
@@ -2114,7 +2141,7 @@ msgstr "Προφίλ"
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
 
-#: src/views/Publication/Add.js:395
+#: src/views/Publication/Add.js:427
 msgid "Protocols"
 msgstr "Πρωτόκολλα"
 
@@ -2122,8 +2149,8 @@ msgstr "Πρωτόκολλα"
 msgid "Public domain/s"
 msgstr "Δημόσιος τομέας/ες"
 
-#: src/views/Publication/Edit.js:117
-#: src/views/Publication/Edit.js:127
+#: src/views/Publication/Edit.js:118
+#: src/views/Publication/Edit.js:128
 msgid "Publication service not found"
 msgstr "Η υπηρεσία δημοσίευσης δεν βρέθηκε"
 
@@ -2222,7 +2249,7 @@ msgstr "Ανανέωση"
 #: src/views/Publication/Services/Livepush.js:85
 #: src/views/Publication/Services/PicartoTv.js:85
 #: src/views/Publication/Services/Restream.js:86
-#: src/views/Publication/Services/Twitch.js:83
+#: src/views/Publication/Services/Twitch.js:84
 #: src/views/Publication/Services/Twitter.js:150
 #: src/views/Publication/Services/Twitter.js:166
 msgid "Region"
@@ -2239,6 +2266,11 @@ msgstr "Επαναφόρτωση"
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
+msgstr ""
+
+#: src/misc/AudioTracks.js:160
+#: src/misc/AudioTracks.js:160
+msgid "Remove audio track"
 msgstr ""
 
 #: src/misc/modals/Hint.js:150
@@ -2377,8 +2409,8 @@ msgstr "Δειγματοληψία"
 #: src/views/Edit/index.js:632
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Playersite.js:829
-#: src/views/Publication/Add.js:567
-#: src/views/Publication/Edit.js:601
+#: src/views/Publication/Add.js:590
+#: src/views/Publication/Edit.js:622
 #: src/views/Publication/Player.js:542
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2451,8 +2483,8 @@ msgstr "Επιλέξτε μια συσκευή:"
 msgid "Select audio source:"
 msgstr "Επιλέξτε πηγή ήχου:"
 
-#: src/views/Publication/Add.js:480
-#: src/views/Publication/Edit.js:520
+#: src/views/Publication/Add.js:512
+#: src/views/Publication/Edit.js:550
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "Επιλέξτε RTMP ή SRT (αν είναι ενεργοποιημένο) για μικρότερη καθυστέρηση."
 
@@ -2526,8 +2558,8 @@ msgstr "URL διακομιστή"
 msgid "Service"
 msgstr "Υπηρεσία"
 
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:439
+#: src/views/Publication/Add.js:459
+#: src/views/Publication/Edit.js:469
 msgid "Service name"
 msgstr "Όνομα υπηρεσίας"
 
@@ -2620,22 +2652,22 @@ msgstr "Κοινωνική σύνδεση (OAuth2, 2FA)"
 msgid "Socket timeout (microseconds)"
 msgstr "Χρονικό όριο υποδοχής (μικροδευτερόλεπτα)"
 
-#: src/views/Publication/Add.js:392
+#: src/views/Publication/Add.js:424
 msgid "Software"
 msgstr "Λογισμικό"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:475
-#: src/views/Publication/Edit.js:515
+#: src/views/Publication/Add.js:507
+#: src/views/Publication/Edit.js:545
 msgid "Source"
 msgstr "Πηγή"
 
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Add.js:470
-#: src/views/Publication/Edit.js:427
-#: src/views/Publication/Edit.js:510
+#: src/views/Publication/Add.js:447
+#: src/views/Publication/Add.js:502
+#: src/views/Publication/Edit.js:457
+#: src/views/Publication/Edit.js:540
 msgid "Source & Encoding"
 msgstr "Πηγή & κωδικοποίηση"
 
@@ -2725,7 +2757,7 @@ msgstr ""
 #: src/views/Publication/Services/Rumble.js:100
 #: src/views/Publication/Services/Telegram.js:101
 #: src/views/Publication/Services/Trovo.js:75
-#: src/views/Publication/Services/Twitch.js:151
+#: src/views/Publication/Services/Twitch.js:152
 #: src/views/Publication/Services/Twitter.js:175
 #: src/views/Publication/Services/Vimeo.js:73
 #: src/views/Publication/Services/Wettercom.js:100
@@ -2835,11 +2867,11 @@ msgstr "Η διαγραφή αυτού του καναλιού δεν μπορε
 
 #: src/views/Edit/index.js:302
 #: src/views/Edit/Wizard/index.js:176
-#: src/views/Publication/Edit.js:262
+#: src/views/Publication/Edit.js:292
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "Το προφίλ εισόδου δεν είναι πλήρες. Ορίστε μια πηγή βίντεο και ήχου."
 
-#: src/views/Publication/Add.js:222
+#: src/views/Publication/Add.js:254
 msgid "The input profile is not complete. Please define a video and/or audio source."
 msgstr "Το προφίλ εισόδου δεν είναι πλήρες. Ορίστε μια πηγή βίντεο ή/και ήχου."
 
@@ -2856,6 +2888,10 @@ msgstr "Ο μέγιστος αριθμός τμημάτων λίστας ανα�
 msgid "The noise color"
 msgstr "Το χρώμα του θορύβου"
 
+#: src/misc/AudioTracks.js:197
+msgid "The order of the tracks defines the order of the output audio tracks."
+msgstr ""
+
 #: src/misc/controls/License/index.js:60
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "Το πρόσωπο που συνέδεσε ένα έργο με αυτή την πράξη έχει αφιερώσει το έργο στο δημόσιο τομέα παραιτούμενος από όλα τα δικαιώματά του επί του έργου παγκοσμίως βάσει του νόμου περί πνευματικών δικαιωμάτων, συμπεριλαμβανομένων όλων των συγγενικών και συγγενικών δικαιωμάτων, στο βαθμό που επιτρέπεται από το νόμο. Μπορείτε να αντιγράψετε, να τροποποιήσετε, να διανείμετε και να εκτελέσετε το έργο, ακόμη και για εμπορικούς σκοπούς, και όλα αυτά χωρίς να ζητήσετε άδεια."
@@ -2864,19 +2900,19 @@ msgstr "Το πρόσωπο που συνέδεσε ένα έργο με αυτ�
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "Το δημόσιο προσβάσιμο όνομα τομέα του κεντρικού υπολογιστή στον οποίο εκτελείται αυτός ο Restreamer. Διαχωρίστε πολλαπλά ονόματα τομέα με κόμμα."
 
-#: src/views/Publication/Edit.js:317
+#: src/views/Publication/Edit.js:347
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "Η υπηρεσία δημοσίευσης \"{0}\" δεν μπόρεσε να διαγραφεί"
 
-#: src/views/Publication/Add.js:237
+#: src/views/Publication/Add.js:269
 msgid "The publication service \"{0}\" has been created"
 msgstr "Η υπηρεσία δημοσίευσης \"{0}\" έχει δημιουργηθεί"
 
-#: src/views/Publication/Edit.js:323
+#: src/views/Publication/Edit.js:353
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "Η υπηρεσία δημοσίευσης \"{0}\" έχει διαγραφεί"
 
-#: src/views/Publication/Add.js:235
+#: src/views/Publication/Add.js:267
 msgid "The publication service has been created"
 msgstr "Η υπηρεσία δημοσίευσης έχει δημιουργηθεί"
 
@@ -2903,7 +2939,7 @@ msgstr "Το επιλεγμένο αρχείο είναι πολύ μεγάλο 
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "Ο επιλεγμένος τύπος αρχείου ({0}) δεν επιτρέπεται. Οι επιτρεπόμενοι τύποι αρχείων είναι {1}"
 
-#: src/views/Publication/Edit.js:277
+#: src/views/Publication/Edit.js:307
 msgid "The settings for \"{0}\" have been saved"
 msgstr "Οι ρυθμίσεις για το \"{0}\" έχουν αποθηκευτεί"
 
@@ -2911,7 +2947,7 @@ msgstr "Οι ρυθμίσεις για το \"{0}\" έχουν αποθηκευ�
 msgid "The source doesn't provide any audio streams."
 msgstr "Η πηγή δεν παρέχει ροές ήχου."
 
-#: src/views/Edit/Profile.js:696
+#: src/views/Edit/Profile.js:684
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
 msgstr "Η πηγή δεν παρέχει ροές ήχου. Ελέγξτε τις λεπτομέρειες του <0>δοκιμίου</0>."
 
@@ -2923,7 +2959,7 @@ msgstr "Η πηγή δεν παρέχει συμβατές ροές ήχου."
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
 msgstr "Η πηγή δεν παρέχει συμβατές ροές βίντεο. Ελέγξτε τις <0>απαιτήσεις</0>."
 
-#: src/views/Edit/Profile.js:537
+#: src/views/Edit/Profile.js:544
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
 msgstr "Η πηγή δεν παρέχει ροές βίντεο. Ελέγξτε τις λεπτομέρειες του <0>δοκιμίου</0>."
 
@@ -2974,6 +3010,10 @@ msgstr "Υπήρχαν κάποια σφάλματα στις ρυθμίσεις
 msgid "There's no login method available."
 msgstr "Δεν υπάρχει διαθέσιμη μέθοδος σύνδεσης."
 
+#: src/misc/AudioTracks.js:98
+msgid "This audio stream is already used by another track."
+msgstr ""
+
 #: src/views/Publication/Services/Dummy.js:26
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "Πρόκειται για μια εικονική υπηρεσία που σας εξηγεί τις έννοιες της υπηρεσίας."
@@ -3013,6 +3053,10 @@ msgstr "Αυτή η άδεια επιτρέπει στους επαναχρησ�
 #: src/views/Edit/Sources/Network.js:781
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "Αυτό το πρωτόκολλο είναι άγνωστο ή δεν υποστηρίζεται από το διαθέσιμο δυαδικό αρχείο FFmpeg."
+
+#: src/misc/AudioTracks.js:92
+msgid "This service supports only one audio track. Additional tracks are ignored."
+msgstr ""
 
 #: src/views/Edit/index.js:657
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
@@ -3063,6 +3107,15 @@ msgstr "Token"
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "Κορυφαίο πεδίο"
+
+#: src/misc/AudioTracks.js:138
+#: src/views/Edit/ProfileSummary.js:107
+msgid "Track {0}"
+msgstr ""
+
+#: src/views/Publication/Services/Twitch.js:161
+msgid "Track 1 is sent as the live audio, track 2 as the VOD audio (Twitch VOD track)."
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3332,7 +3385,7 @@ msgstr "βελούδο"
 msgid "Vertical Flip"
 msgstr "Κάθετη αναστροφή"
 
-#: src/views/Publication/Add.js:502
+#: src/views/Publication/Add.js:534
 msgid "Video"
 msgstr "Βίντεο"
 
@@ -3345,9 +3398,9 @@ msgstr "Βίντεο"
 msgid "Video device"
 msgstr "Συσκευή βίντεο"
 
-#: src/views/Edit/Profile.js:490
-#: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:540
+#: src/views/Edit/Profile.js:497
+#: src/views/Edit/ProfileSummary.js:67
+#: src/views/Publication/Edit.js:570
 msgid "Video settings"
 msgstr "Ρυθμίσεις βίντεο"
 
@@ -3434,7 +3487,7 @@ msgstr "Έχετε αλλάξει τη διαμόρφωση. Για να τεθ�
 msgid "You have to reconnect manually"
 msgstr "Πρέπει να επανασυνδεθείτε χειροκίνητα"
 
-#: src/views/Publication/Edit.js:482
+#: src/views/Publication/Edit.js:512
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "Έχετε μη αποθηκευμένες αλλαγές. Παρακαλούμε αποθηκεύστε τις πριν μπορέσετε να ελέγξετε ξανά την υπηρεσία."
 

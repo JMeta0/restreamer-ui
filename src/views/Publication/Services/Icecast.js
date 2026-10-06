@@ -45,6 +45,10 @@ const requires = {
 		audio: ['aac', 'opus', 'vorbis', 'mp3'],
 		video: ['none', 'vp9'],
 	},
+	audio: {
+		min: 0,
+		max: 1,
+	},
 };
 
 function ServiceIcon(props) {
@@ -83,7 +87,9 @@ function createOutputs(settings, skills, metadata, streams) {
 		if (streams[i].type === 'video') {
 			hasVideo = true;
 		} else if (streams[i].type === 'audio') {
-			audioCodec = streams[i].codec;
+			if (audioCodec.length === 0) {
+				audioCodec = streams[i].codec;
+			}
 		}
 	}
 

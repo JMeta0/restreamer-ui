@@ -17,8 +17,8 @@ msgstr ""
 msgid "<0>Compatibility list</0>"
 msgstr "<0>兼容性列表</0>"
 
-#: src/views/Edit/Profile.js:560
-#: src/views/Edit/Profile.js:719
+#: src/views/Edit/Profile.js:567
+#: src/views/Edit/Profile.js:699
 msgid "<0>Show probe details</0>"
 msgstr "<0>显示媒体信息头详情</0>"
 
@@ -45,9 +45,9 @@ msgstr "7 (+ fragmented MP4 格式)"
 #: src/misc/ChannelList.js:412
 #: src/views/Edit/index.js:647
 #: src/views/Edit/index.js:666
-#: src/views/Edit/Profile.js:599
+#: src/views/Edit/Profile.js:606
 #: src/views/Edit/Wizard/Abort.js:14
-#: src/views/Publication/Edit.js:631
+#: src/views/Publication/Edit.js:652
 #: src/views/Settings.js:2278
 #: src/views/Settings.js:2300
 msgid "Abort"
@@ -66,6 +66,10 @@ msgstr "添加"
 msgid "Add Audio"
 msgstr ""
 
+#: src/misc/AudioTracks.js:204
+msgid "Add audio track"
+msgstr ""
+
 #: src/views/Playersite.js:733
 msgid "Add external widgets and styles to the publication site. You can find some examples on the help page."
 msgstr "将外部小部件和样式添加到站点。您可以在帮助页面上找到一些示例。"
@@ -74,7 +78,7 @@ msgstr "将外部小部件和样式添加到站点。您可以在帮助页面上
 msgid "Add new channel"
 msgstr "添加新频道"
 
-#: src/views/Publication/Add.js:363
+#: src/views/Publication/Add.js:395
 msgid "Add Publication"
 msgstr "添加串流输出"
 
@@ -82,7 +86,7 @@ msgstr "添加串流输出"
 #~ msgid "Add Stream"
 #~ msgstr ""
 
-#: src/views/Publication/Add.js:366
+#: src/views/Publication/Add.js:398
 msgid "Add: {0}"
 msgstr "添加：{0}"
 
@@ -101,7 +105,7 @@ msgstr ""
 #: src/views/Publication/Services/Core.js:224
 #: src/views/Publication/Services/DASH.js:192
 #: src/views/Publication/Services/HLS.js:181
-#: src/views/Publication/Services/Icecast.js:162
+#: src/views/Publication/Services/Icecast.js:168
 #: src/views/Publication/Services/Image2.js:126
 #: src/views/Publication/Services/Linkedin.js:93
 #: src/views/Publication/Services/MPEGTS.js:170
@@ -145,7 +149,7 @@ msgstr "高级监控"
 #: src/views/Edit/Sources/Network.js:518
 #: src/views/Publication/Services/DASH.js:204
 #: src/views/Publication/Services/HLS.js:193
-#: src/views/Publication/Services/Icecast.js:172
+#: src/views/Publication/Services/Icecast.js:178
 #: src/views/Publication/Services/Image2.js:132
 #: src/views/Publication/Services/MPEGTS.js:176
 #: src/views/Publication/Services/RTMP.js:174
@@ -168,7 +172,7 @@ msgstr "AirPlay"
 msgid "Alerting by email"
 msgstr "邮件通知"
 
-#: src/views/Publication/Add.js:386
+#: src/views/Publication/Add.js:418
 msgid "All"
 msgstr "全部"
 
@@ -218,7 +222,7 @@ msgstr "Application"
 msgid "Are you sure you want to abort the wizard?"
 msgstr "确定要终止向导吗？"
 
-#: src/views/Publication/Add.js:527
+#: src/views/Publication/Add.js:559
 msgid "Audio"
 msgstr "音频"
 
@@ -236,9 +240,9 @@ msgstr "音频设备"
 msgid "Audio from device"
 msgstr "来自设备的音频"
 
-#: src/views/Edit/Profile.js:614
-#: src/views/Edit/ProfileSummary.js:90
-#: src/views/Publication/Edit.js:565
+#: src/views/Edit/Profile.js:621
+#: src/views/Edit/ProfileSummary.js:91
+#: src/views/Publication/Edit.js:595
 msgid "Audio settings"
 msgstr "音频设置"
 
@@ -291,14 +295,14 @@ msgstr "AVFoundation"
 msgid "avoid_negative_ts"
 msgstr "avoid_negative_ts"
 
-#: src/views/Edit/Profile.js:760
+#: src/views/Edit/Profile.js:729
 #: src/views/Edit/Wizard/Abort.js:25
 #: src/views/Edit/Wizard/Audio.js:109
 #: src/views/Edit/Wizard/License.js:38
 #: src/views/Edit/Wizard/Metadata.js:35
 #: src/views/Edit/Wizard/Video.js:66
 #: src/views/Edit/Wizard/VideoProfile.js:67
-#: src/views/Publication/Add.js:561
+#: src/views/Publication/Add.js:584
 msgid "Back"
 msgstr "返回"
 
@@ -422,7 +426,7 @@ msgstr "频道"
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: src/views/Publication/Add.js:316
+#: src/views/Publication/Add.js:348
 msgid "Check the requirements"
 msgstr "检查"
 
@@ -475,9 +479,9 @@ msgstr "块"
 #: src/misc/modals/Hint.js:181
 #: src/views/Edit/index.js:621
 #: src/views/Playersite.js:823
-#: src/views/Publication/Add.js:404
-#: src/views/Publication/Add.js:558
-#: src/views/Publication/Edit.js:595
+#: src/views/Publication/Add.js:436
+#: src/views/Publication/Add.js:581
+#: src/views/Publication/Edit.js:616
 #: src/views/Publication/Player.js:536
 #: src/views/Settings.js:2219
 msgid "Close"
@@ -735,12 +739,12 @@ msgstr "延迟（ms）"
 #: src/views/Edit/index.js:635
 #: src/views/Edit/index.js:671
 #: src/views/Playersite.js:506
-#: src/views/Publication/Edit.js:604
-#: src/views/Publication/Edit.js:636
+#: src/views/Publication/Edit.js:625
+#: src/views/Publication/Edit.js:657
 msgid "Delete"
 msgstr "删除"
 
-#: src/views/Publication/Edit.js:641
+#: src/views/Publication/Edit.js:662
 msgid "Deleting a publication service cannot be reversed. The publication stops immediately."
 msgstr "删除串流输出服务无法撤消。串流输出立即停止。"
 
@@ -803,7 +807,7 @@ msgstr "确定要立刻重启应用吗？"
 msgid "Do you want to delete \"{0}\"?"
 msgstr "确定要删除 \"{0}\" 吗？"
 
-#: src/views/Publication/Edit.js:628
+#: src/views/Publication/Edit.js:649
 msgid "Do you want to delete {title}?"
 msgstr "确定要删除 {title} 吗？"
 
@@ -818,7 +822,7 @@ msgstr "文档"
 
 #: src/views/Publication/Services/DASH.js:501
 #: src/views/Publication/Services/HLS.js:496
-#: src/views/Publication/Services/Icecast.js:240
+#: src/views/Publication/Services/Icecast.js:246
 #: src/views/Publication/Services/Image2.js:171
 #: src/views/Publication/Services/MPEGTS.js:365
 #: src/views/Publication/Services/RTMP.js:286
@@ -848,7 +852,7 @@ msgstr "编辑"
 msgid "Edit the audio and video sources for the live stream. Add a description, and set your desired content license."
 msgstr "编辑直播流的音频和视频源。添加描述，并设置您想要的内容许可。"
 
-#: src/views/Publication/Edit.js:417
+#: src/views/Publication/Edit.js:447
 msgid "Edit: {title}"
 msgstr "编辑：{title}"
 
@@ -927,8 +931,8 @@ msgid "Encoder"
 msgstr "编码器"
 
 #: src/views/Edit/Summary.js:95
-#: src/views/Publication/Add.js:492
-#: src/views/Publication/Edit.js:528
+#: src/views/Publication/Add.js:524
+#: src/views/Publication/Edit.js:558
 msgid "Encoding"
 msgstr "编码"
 
@@ -1010,7 +1014,7 @@ msgstr "扩展底栏"
 msgid "Extend header"
 msgstr "扩展顶栏"
 
-#: src/views/Publication/Add.js:229
+#: src/views/Publication/Add.js:261
 msgid "Failed to create publication service ({0})"
 msgstr "创建串流输出服务失败（{0}）"
 
@@ -1018,8 +1022,8 @@ msgstr "创建串流输出服务失败（{0}）"
 msgid "Failed to create publication website files."
 msgstr "创建发布站点文件失败。"
 
-#: src/views/Edit/Profile.js:512
-#: src/views/Edit/Profile.js:671
+#: src/views/Edit/Profile.js:519
+#: src/views/Edit/Profile.js:659
 msgid "Failed to probe the source. Please check the <0>probe details</0>."
 msgstr "探测媒体信息头失败。请检查 <0>媒体头详情</0>。"
 
@@ -1039,7 +1043,7 @@ msgstr "终止进程失败"
 msgid "Failed to store player size setting."
 msgstr "保存播放器尺寸设置失败。"
 
-#: src/views/Publication/Edit.js:269
+#: src/views/Publication/Edit.js:299
 msgid "Failed to store publication service ({0})"
 msgstr "保存串流输出服务失败（{0}）"
 
@@ -1077,7 +1081,7 @@ msgstr "文件路径"
 msgid "Filter"
 msgstr "过滤器"
 
-#: src/views/Edit/Profile.js:768
+#: src/views/Edit/Profile.js:737
 msgid "Finish"
 msgstr "完成"
 
@@ -1149,11 +1153,11 @@ msgstr "频率（Hz）"
 #: src/views/Edit/Sources/Network.js:612
 #: src/views/Playersite.js:328
 #: src/views/Playersite.js:341
-#: src/views/Publication/Add.js:414
-#: src/views/Publication/Edit.js:426
+#: src/views/Publication/Add.js:446
+#: src/views/Publication/Edit.js:456
 #: src/views/Publication/Services/DASH.js:211
 #: src/views/Publication/Services/HLS.js:200
-#: src/views/Publication/Services/Icecast.js:179
+#: src/views/Publication/Services/Icecast.js:185
 #: src/views/Publication/Services/Image2.js:139
 #: src/views/Publication/Services/RTMP.js:181
 #: src/views/Publication/Services/RTSP.js:169
@@ -1174,7 +1178,7 @@ msgstr "常规"
 #: src/views/Publication/Services/Restream.js:120
 #: src/views/Publication/Services/Rumble.js:107
 #: src/views/Publication/Services/Trovo.js:79
-#: src/views/Publication/Services/Twitch.js:155
+#: src/views/Publication/Services/Twitch.js:156
 #: src/views/Publication/Services/Twitter.js:179
 #: src/views/Publication/Services/Wettercom.js:107
 #: src/views/Publication/Services/Youtube.js:193
@@ -1279,8 +1283,8 @@ msgstr "水印"
 msgid "In addition to the player, the Restreamer offers a complete landingpage, which you can use to present your live stream easily and quickly."
 msgstr "除了播放器之外，Restreamer 还提供了一个完整的展示页面，您可以使用它轻松快速地展示您的直播。"
 
-#: src/views/Edit/Profile.js:521
-#: src/views/Edit/Profile.js:680
+#: src/views/Edit/Profile.js:528
+#: src/views/Edit/Profile.js:668
 msgid "In order to proceed anyways, you can provide <0>hints</0> about the available streams."
 msgstr ""
 
@@ -1294,7 +1298,7 @@ msgstr "In-memory"
 msgid "In-memory storage"
 msgstr "In-memory 存储"
 
-#: src/views/Publication/Add.js:313
+#: src/views/Publication/Add.js:345
 msgid "Incompatible"
 msgstr "不兼容"
 
@@ -1389,8 +1393,8 @@ msgid "Life color"
 msgstr "Life color"
 
 #: src/views/Edit/index.js:565
-#: src/views/Publication/Add.js:458
-#: src/views/Publication/Edit.js:470
+#: src/views/Publication/Add.js:490
+#: src/views/Publication/Edit.js:500
 msgid "Limits"
 msgstr "限制"
 
@@ -1455,7 +1459,7 @@ msgstr "将直播流传输到 PeerTube V3+ RTMP/S 服务。"
 msgid "Live-Streaming to Trovo Live RTMP Service."
 msgstr "将直播流传输到 Trove Live RTMP 服务。"
 
-#: src/views/Publication/Services/Twitch.js:17
+#: src/views/Publication/Services/Twitch.js:18
 msgid "Live-Streaming to Twitch Live RTMP Service."
 msgstr "串流到 Twitch Live RTMP 服务。"
 
@@ -1648,7 +1652,7 @@ msgid "Mold"
 msgstr "Mold"
 
 #: src/views/Publication/Services/Facebook.js:17
-#: src/views/Publication/Services/Twitch.js:18
+#: src/views/Publication/Services/Twitch.js:19
 #: src/views/Publication/Services/Vimeo.js:14
 msgid "More about licenses here"
 msgstr "关于许可证的更多信息"
@@ -1664,6 +1668,24 @@ msgstr "更多关于 Twitter 版权信息，请点击<0>这里</0>。"
 #: src/views/Publication/Services/Youtube.js:31
 msgid "More about YouTube's copyright <0>here</0>."
 msgstr "关于 YouTube 的版权，请点击<0>这里</0>。"
+
+#: src/misc/AudioTracks.js:96
+msgid "Most players (and legacy RTMP/FLV endpoints) only play the first audio track. Additional tracks are e.g. used by Twitch for the VOD audio."
+msgstr ""
+
+#: src/misc/AudioTracks.js:153
+#: src/misc/AudioTracks.js:154
+msgid "Move audio track down"
+msgstr ""
+
+#: src/misc/AudioTracks.js:144
+#: src/misc/AudioTracks.js:145
+msgid "Move audio track up"
+msgstr ""
+
+#: src/misc/AudioTracks.js:94
+msgid "Multiple audio tracks for FLV-based outputs require FFmpeg 8 or newer."
+msgstr ""
 
 #: src/views/Settings.js:1833
 msgid "Must be larger than maximum file size in cache."
@@ -1718,7 +1740,7 @@ msgstr "网络源"
 msgid "Next"
 msgstr "下一步"
 
-#: src/views/Edit/Profile.js:602
+#: src/views/Edit/Profile.js:609
 msgid "Next: Audio"
 msgstr "下一步：音频"
 
@@ -1738,6 +1760,11 @@ msgstr "无音频"
 #: src/views/Edit/StreamSelect.js:62
 msgid "No audio stream available"
 msgstr "没有可用的音频流"
+
+#: src/misc/AudioTracks.js:189
+#: src/views/Edit/ProfileSummary.js:98
+msgid "No audio track selected. The publication will be sent without audio."
+msgstr ""
 
 #: src/views/Edit/Wizard/Sources/AVFoundation.js:70
 #: src/views/Edit/Wizard/Sources/V4L.js:99
@@ -1855,7 +1882,7 @@ msgstr "SRT 加密的密码。"
 msgid "Passphrase must be between 10 and 79 characters long"
 msgstr "密码长度必须介于 10 和 79 之间"
 
-#: src/views/Publication/Edit.js:533
+#: src/views/Publication/Edit.js:563
 msgid "Passthrough (copy) should only be disabled if necessary. Each encoding requires additional CPU/GPU resources."
 msgstr "仅在必要时才应禁用直通（复制）。每种编码都需要额外的 CPU/GPU 资源。"
 
@@ -1904,7 +1931,7 @@ msgstr ""
 msgid "Plan: <0>Starter</0>"
 msgstr "计划：<0>起步</0>"
 
-#: src/views/Publication/Add.js:389
+#: src/views/Publication/Add.js:421
 msgid "Platforms"
 msgstr "直播平台"
 
@@ -1990,7 +2017,7 @@ msgstr "请与该服务的运营商联系并检查发生了什么。"
 msgid "Please select a file to upload."
 msgstr "请选择要上传的文件。"
 
-#: src/views/Publication/Add.js:497
+#: src/views/Publication/Add.js:529
 msgid "Please use \"Passthrough (copy)\" if possible. Encoding requires additional CPU/GPU resources."
 msgstr "请尽可能使用 \"直通（复制）\"。编码需要额外的 CPU/GPU 资源。"
 
@@ -2049,27 +2076,27 @@ msgid "Probe"
 msgstr "检测媒体流信息"
 
 #: src/views/Edit/index.js:554
-#: src/views/Publication/Add.js:447
-#: src/views/Publication/Edit.js:459
+#: src/views/Publication/Add.js:479
+#: src/views/Publication/Edit.js:489
 msgid "Process"
 msgstr "串流进程"
 
-#: src/views/Publication/Add.js:416
-#: src/views/Publication/Edit.js:428
+#: src/views/Publication/Add.js:448
+#: src/views/Publication/Edit.js:458
 msgid "Process control"
 msgstr "进程控制"
 
 #: src/views/Main/index.js:451
 #: src/views/Main/index.js:467
-#: src/views/Publication/Edit.js:494
-#: src/views/Publication/Edit.js:613
+#: src/views/Publication/Edit.js:524
+#: src/views/Publication/Edit.js:634
 msgid "Process details"
 msgstr "进程详情"
 
 #: src/views/Main/index.js:454
 #: src/views/Main/index.js:475
-#: src/views/Publication/Edit.js:497
-#: src/views/Publication/Edit.js:621
+#: src/views/Publication/Edit.js:527
+#: src/views/Publication/Edit.js:642
 msgid "Process report"
 msgstr "进程报告"
 
@@ -2099,7 +2126,7 @@ msgstr "Profile"
 #: src/views/Publication/Services/DaCast.js:168
 #: src/views/Publication/Services/DASH.js:186
 #: src/views/Publication/Services/HLS.js:175
-#: src/views/Publication/Services/Icecast.js:156
+#: src/views/Publication/Services/Icecast.js:162
 #: src/views/Publication/Services/Image2.js:120
 #: src/views/Publication/Services/Linkedin.js:84
 #: src/views/Publication/Services/MPEGTS.js:164
@@ -2114,7 +2141,7 @@ msgstr "Profile"
 msgid "Protocol"
 msgstr "协议"
 
-#: src/views/Publication/Add.js:395
+#: src/views/Publication/Add.js:427
 msgid "Protocols"
 msgstr "串流协议"
 
@@ -2122,8 +2149,8 @@ msgstr "串流协议"
 msgid "Public domain/s"
 msgstr "公有域名"
 
-#: src/views/Publication/Edit.js:117
-#: src/views/Publication/Edit.js:127
+#: src/views/Publication/Edit.js:118
+#: src/views/Publication/Edit.js:128
 msgid "Publication service not found"
 msgstr "找不到串流输出服务"
 
@@ -2222,7 +2249,7 @@ msgstr "刷新"
 #: src/views/Publication/Services/Livepush.js:85
 #: src/views/Publication/Services/PicartoTv.js:85
 #: src/views/Publication/Services/Restream.js:86
-#: src/views/Publication/Services/Twitch.js:83
+#: src/views/Publication/Services/Twitch.js:84
 #: src/views/Publication/Services/Twitter.js:150
 #: src/views/Publication/Services/Twitter.js:166
 msgid "Region"
@@ -2239,6 +2266,11 @@ msgstr "重新加载"
 
 #: src/misc/modals/Hint.js:159
 msgid "Remove Audio"
+msgstr ""
+
+#: src/misc/AudioTracks.js:160
+#: src/misc/AudioTracks.js:160
+msgid "Remove audio track"
 msgstr ""
 
 #: src/misc/modals/Hint.js:150
@@ -2377,8 +2409,8 @@ msgstr "采样"
 #: src/views/Edit/index.js:632
 #: src/views/Edit/Wizard/License.js:43
 #: src/views/Playersite.js:829
-#: src/views/Publication/Add.js:567
-#: src/views/Publication/Edit.js:601
+#: src/views/Publication/Add.js:590
+#: src/views/Publication/Edit.js:622
 #: src/views/Publication/Player.js:542
 #: src/views/Settings.js:2224
 msgid "Save"
@@ -2451,8 +2483,8 @@ msgstr "选择一个设备："
 msgid "Select audio source:"
 msgstr "选择音频源："
 
-#: src/views/Publication/Add.js:480
-#: src/views/Publication/Edit.js:520
+#: src/views/Publication/Add.js:512
+#: src/views/Publication/Edit.js:550
 msgid "Select RTMP or SRT (if enabled) for less latency."
 msgstr "选择 RTMP 或 SRT （如果可用）以减少延迟。"
 
@@ -2526,8 +2558,8 @@ msgstr "服务器 URL"
 msgid "Service"
 msgstr "服务"
 
-#: src/views/Publication/Add.js:427
-#: src/views/Publication/Edit.js:439
+#: src/views/Publication/Add.js:459
+#: src/views/Publication/Edit.js:469
 msgid "Service name"
 msgstr "服务名称"
 
@@ -2620,22 +2652,22 @@ msgstr "通过社交媒体登录（OAuth2, 2FA）"
 msgid "Socket timeout (microseconds)"
 msgstr "Socket 超时（毫秒）"
 
-#: src/views/Publication/Add.js:392
+#: src/views/Publication/Add.js:424
 msgid "Software"
 msgstr "软件"
 
 #: src/misc/controls/Source.js:74
 #: src/views/Edit/Sources/VirtualAudio.js:88
 #: src/views/Edit/Sources/VirtualVideo.js:112
-#: src/views/Publication/Add.js:475
-#: src/views/Publication/Edit.js:515
+#: src/views/Publication/Add.js:507
+#: src/views/Publication/Edit.js:545
 msgid "Source"
 msgstr "媒体源"
 
-#: src/views/Publication/Add.js:415
-#: src/views/Publication/Add.js:470
-#: src/views/Publication/Edit.js:427
-#: src/views/Publication/Edit.js:510
+#: src/views/Publication/Add.js:447
+#: src/views/Publication/Add.js:502
+#: src/views/Publication/Edit.js:457
+#: src/views/Publication/Edit.js:540
 msgid "Source & Encoding"
 msgstr "媒体源 & 编码"
 
@@ -2725,7 +2757,7 @@ msgstr ""
 #: src/views/Publication/Services/Rumble.js:100
 #: src/views/Publication/Services/Telegram.js:101
 #: src/views/Publication/Services/Trovo.js:75
-#: src/views/Publication/Services/Twitch.js:151
+#: src/views/Publication/Services/Twitch.js:152
 #: src/views/Publication/Services/Twitter.js:175
 #: src/views/Publication/Services/Vimeo.js:73
 #: src/views/Publication/Services/Wettercom.js:100
@@ -2835,11 +2867,11 @@ msgstr "此频道删除后无法恢复。该频道的所有串流输出将被删
 
 #: src/views/Edit/index.js:302
 #: src/views/Edit/Wizard/index.js:176
-#: src/views/Publication/Edit.js:262
+#: src/views/Publication/Edit.js:292
 msgid "The input profile is not complete. Please define a video and audio source."
 msgstr "输入设置不完整。请设置视频源和音频源。"
 
-#: src/views/Publication/Add.js:222
+#: src/views/Publication/Add.js:254
 msgid "The input profile is not complete. Please define a video and/or audio source."
 msgstr "输入配置文件不完整。请定义视频和/或音频源。"
 
@@ -2856,6 +2888,10 @@ msgstr "最大的 playlist segments 数量。0 表示包含所有 segment。推�
 msgid "The noise color"
 msgstr "噪音颜色"
 
+#: src/misc/AudioTracks.js:197
+msgid "The order of the tracks defines the order of the output audio tracks."
+msgstr ""
+
 #: src/misc/controls/License/index.js:60
 msgid "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission."
 msgstr "在法律允许的范围内，根据版权法，包括所有相关和邻接权利在内，将作品与此契约相关联的人放弃了他或她在全球范围内对作品的所有权利，从而将作品投入公共领域。您可以复制、修改、分发和执行作品，甚至可以用于商业目的，所有这些都无需征得许可。"
@@ -2864,19 +2900,19 @@ msgstr "在法律允许的范围内，根据版权法，包括所有相关和邻
 msgid "The public reachable domain name of the host this Restreamer is running on. Separate multiple domain names by a comma."
 msgstr "运行 Restreamer 主机的公网域名。用逗号分隔多个域名。"
 
-#: src/views/Publication/Edit.js:317
+#: src/views/Publication/Edit.js:347
 msgid "The publication service \"{0}\" could not be deleted"
 msgstr "无法删除串流输出服务 \"{0}\""
 
-#: src/views/Publication/Add.js:237
+#: src/views/Publication/Add.js:269
 msgid "The publication service \"{0}\" has been created"
 msgstr "已创建串流输出服务 \"{0}\""
 
-#: src/views/Publication/Edit.js:323
+#: src/views/Publication/Edit.js:353
 msgid "The publication service \"{0}\" has been deleted"
 msgstr "已删除串流输出服务 \"{0}\""
 
-#: src/views/Publication/Add.js:235
+#: src/views/Publication/Add.js:267
 msgid "The publication service has been created"
 msgstr "已创建串流输出服务"
 
@@ -2903,7 +2939,7 @@ msgstr "所选文件太大 (<0/>)。只允许 <1/>。"
 msgid "The selected file type ({0}) is not allowed. Allowed file types are {1}"
 msgstr "不允许使用所选文件类型（{0}）。允许的文件类型为 {1}"
 
-#: src/views/Publication/Edit.js:277
+#: src/views/Publication/Edit.js:307
 msgid "The settings for \"{0}\" have been saved"
 msgstr "已保存 \"{0}\" 的设置"
 
@@ -2911,7 +2947,7 @@ msgstr "已保存 \"{0}\" 的设置"
 msgid "The source doesn't provide any audio streams."
 msgstr "媒体源没有提供音频流。"
 
-#: src/views/Edit/Profile.js:696
+#: src/views/Edit/Profile.js:684
 msgid "The source doesn't provide any audio streams. Please check the <0>probe details</0>."
 msgstr "媒体源没有提供音频流。请检查 <0>媒体头详情</0>。"
 
@@ -2923,7 +2959,7 @@ msgstr "媒体源没有提供兼容的音频流。"
 msgid "The source doesn't provide any compatible video streams. Please check the <0>requirements</0>."
 msgstr "媒体源没有提供兼容的音频流。请检查 <0>媒体头详情</0>。"
 
-#: src/views/Edit/Profile.js:537
+#: src/views/Edit/Profile.js:544
 msgid "The source doesn't provide any video streams. Please check the <0>probe details</0>."
 msgstr "媒体源没有提供视频流。请检查 <0>媒体头详情</0>。"
 
@@ -2974,6 +3010,10 @@ msgstr "设置中有错误。设置未保存。"
 msgid "There's no login method available."
 msgstr "没有可用的登录方式。"
 
+#: src/misc/AudioTracks.js:98
+msgid "This audio stream is already used by another track."
+msgstr ""
+
 #: src/views/Publication/Services/Dummy.js:26
 msgid "This is a dummy service that explains to you the concepts of service."
 msgstr "这是一个虚拟服务，向您解释服务的概念。"
@@ -3013,6 +3053,10 @@ msgstr "该许可证允许再利用者以任何媒体或格式分发、重新混
 #: src/views/Edit/Sources/Network.js:781
 msgid "This protocol is unknown or not supported by the available FFmpeg binary."
 msgstr "该协议未知或不被当前可用的 FFmpeg 支持。"
+
+#: src/misc/AudioTracks.js:92
+msgid "This service supports only one audio track. Additional tracks are ignored."
+msgstr ""
 
 #: src/views/Edit/index.js:657
 msgid "This source cannot be edited while it is in use. To continue, you have to disconnect the source."
@@ -3063,6 +3107,15 @@ msgstr "Token"
 #: src/misc/filters/video/Bwdif.js:59
 msgid "Top field"
 msgstr "顶部区域"
+
+#: src/misc/AudioTracks.js:138
+#: src/views/Edit/ProfileSummary.js:107
+msgid "Track {0}"
+msgstr ""
+
+#: src/views/Publication/Services/Twitch.js:161
+msgid "Track 1 is sent as the live audio, track 2 as the VOD audio (Twitch VOD track)."
+msgstr ""
 
 #: src/views/Publication/Services/Telegram.js:13
 msgid "Transmit a Livestream to a Telegram Channel."
@@ -3332,7 +3385,7 @@ msgstr "天鹅绒"
 msgid "Vertical Flip"
 msgstr "垂直翻转"
 
-#: src/views/Publication/Add.js:502
+#: src/views/Publication/Add.js:534
 msgid "Video"
 msgstr "视频"
 
@@ -3345,9 +3398,9 @@ msgstr "视频"
 msgid "Video device"
 msgstr "视频设备"
 
-#: src/views/Edit/Profile.js:490
-#: src/views/Edit/ProfileSummary.js:66
-#: src/views/Publication/Edit.js:540
+#: src/views/Edit/Profile.js:497
+#: src/views/Edit/ProfileSummary.js:67
+#: src/views/Publication/Edit.js:570
 msgid "Video settings"
 msgstr "视频设置"
 
@@ -3434,7 +3487,7 @@ msgstr "配置已更改。请重启应用以使更改生效。要立刻重启吗
 msgid "You have to reconnect manually"
 msgstr "需要手动重连"
 
-#: src/views/Publication/Edit.js:482
+#: src/views/Publication/Edit.js:512
 msgid "You have unsaved changes. Please save them before you can control the service again."
 msgstr "有未保存的更改。请保存以再次管理服务。"
 

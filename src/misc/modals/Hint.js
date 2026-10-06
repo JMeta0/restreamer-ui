@@ -149,13 +149,13 @@ const Streams = function (props) {
 				</Grid>
 			))}
 			<Grid item xs={12}>
-				{props.streams.length < 2 && (
+				{props.streams.length < 9 && (
 					<Button variant="outlined" color="default" onClick={handleAddStream}>
 						<Trans>Add Audio</Trans>
 					</Button>
 				)}
-				{props.streams.length === 2 && (
-					<Button variant="outlined" color="secondary" onClick={handleRemoveStream(1)}>
+				{props.streams.length > 1 && (
+					<Button variant="outlined" color="secondary" onClick={handleRemoveStream(props.streams.length - 1)}>
 						<Trans>Remove Audio</Trans>
 					</Button>
 				)}

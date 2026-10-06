@@ -22,6 +22,7 @@ import Typography from '@mui/material/Typography';
 
 import * as helper from './helper';
 import * as M from '../../utils/metadata';
+import AudioTracks from '../../misc/AudioTracks';
 import EncodingSelect from '../../misc/EncodingSelect';
 import FilterSelect from '../../misc/FilterSelect';
 import H from '../../utils/help';
@@ -143,7 +144,13 @@ export default function Add(props) {
 
 			const profiles = $settings.profiles;
 			profiles[0].video = helper.preselectProfile(profiles[0].video, 'video', $sources[0].streams, serviceSkills.codecs.video, $skills);
-			profiles[0].audio = helper.preselectProfile(profiles[0].audio, 'audio', $sources[0].streams, serviceSkills.codecs.audio, $skills);
+			profiles[0].audio = helper.preselectAudioTracks(
+				profiles[0].audio,
+				$sources[0].streams,
+				serviceSkills.codecs.audio,
+				$skills,
+				helper.validateRequirements(s.requires).audio.max,
+			);
 
 			setSettings({
 				...$settings,
@@ -187,6 +194,31 @@ export default function Add(props) {
 		let outputs = $settings.outputs;
 
 		service = Services.Get($service);
+		if (service !== null) {
+			if ('createOutputs' in service) {
+				const serviceSkills = helper.conflateServiceSkills(service.requires, $skills);
+				outputs = service.createOutputs($settings.settings, serviceSkills, $metadata, streams);
+			}
+		}
+
+		setSettings({
+			...$settings,
+			profiles: profiles,
+			streams: streams,
+			outputs: outputs,
+		});
+	};
+
+	const handleAudioTracks = (tracks) => {
+		const profiles = $settings.profiles;
+
+		profiles[0].audio = tracks;
+
+		const streams = M.createOutputStreams($sources, profiles, false);
+
+		let outputs = $settings.outputs;
+
+		const service = Services.Get($service);
 		if (service !== null) {
 			if ('createOutputs' in service) {
 				const serviceSkills = helper.conflateServiceSkills(service.requires, $skills);
@@ -528,25 +560,16 @@ export default function Add(props) {
 											</Typography>
 										</Grid>
 										<Grid item xs={12}>
-											<EncodingSelect
-												type="audio"
+											<AudioTracks
 												streams={$sources[0].streams}
-												profile={$settings.profiles[0].audio}
+												tracks={$settings.profiles[0].audio}
 												codecs={serviceSkills.codecs.audio}
 												skills={$skills}
-												onChange={handleProcessing('audio')}
+												maxTracks={helper.validateRequirements(service.requires).audio.max}
+												warnings={helper.checkAudioTracks($settings.profiles[0].audio, service.requires, $skills)}
+												onChange={handleAudioTracks}
 											/>
 										</Grid>
-										{$settings.profiles[0].audio.encoder.coder !== 'copy' && (
-											<Grid item xs={12}>
-												<FilterSelect
-													type="audio"
-													profile={$settings.profiles[0].audio}
-													availableFilters={$skills.filter}
-													onChange={handleProcessingFilter('audio')}
-												/>
-											</Grid>
-										)}
 									</TabContent>
 								</TabPanel>
 							</TabsVerticalGrid>

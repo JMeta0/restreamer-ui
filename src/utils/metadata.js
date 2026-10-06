@@ -82,7 +82,7 @@ data = {
 		}]
 	}],
 	profiles: [{
-		audio: {
+		audio: [{
 			source: 1, <-- this is the index of the "sources" array
 			stream: 0, <-- this is the index of the "streams" array in the referenced source
 			encoder: {
@@ -117,7 +117,10 @@ data = {
 					}
 				}
 			},
-		},
+		}], <-- ordered list of audio tracks since 1.15.0: the position defines
+		        the output audio track order (e.g. Twitch: 1st = live, 2nd = VOD
+		        audio). Each track selects a source stream and has its own
+		        encoder/decoder/filter. An empty list means "no audio".
 		video: {
 			source: 0,
 			stream: 1,
@@ -384,41 +387,71 @@ const initIngestMetadata = (initialMetadata) => {
 	return mergeIngestMetadata(initialMetadata);
 };
 
+const audioTracksTransformer = (metadata) => {
+	for (let p = 0; p < metadata.profiles.length; p++) {
+		const profile = metadata.profiles[p];
+
+		// profile.audio used to be a single audio entry. It is now an ordered
+		// list of audio tracks (the order defines the output track order).
+		if (!Array.isArray(profile.audio)) {
+			const audio = {
+				source: -1,
+				stream: -1,
+				encoder: {coder: 'none'},
+				...profile.audio,
+			};
+
+			if (audio.source === -1 || audio.stream === -1 || audio.encoder.coder === 'none') {
+				profile.audio = [];
+			} else {
+				profile.audio = [audio];
+			}
+		}
+	}
+
+	metadata.version = '1.15.0';
+
+	return metadata;
+};
+
 const ingestTransformers = {
 	'1.2.0': (metadata) => {
 		for (let p = 0; p < metadata.profiles.length; p++) {
 			const profile = metadata.profiles[p];
 
-			if (profile.audio.encoder.coder === 'copy' || profile.audio.encoder.coder === 'none') {
-				continue;
-			}
+			for (const audio of profile.audio) {
+				if (audio.encoder.coder === 'copy' || audio.encoder.coder === 'none') {
+					continue;
+				}
 
-			const settings = profile.audio.encoder.settings;
+				const settings = audio.encoder.settings;
 
-			profile.audio.filter = {
-				settings: {
-					aresample: {
-						settings: {
-							channels: settings.channels,
-							layout: settings.layout,
-							sampling: settings.sampling,
+				audio.filter = {
+					settings: {
+						aresample: {
+							settings: {
+								channels: settings.channels,
+								layout: settings.layout,
+								sampling: settings.sampling,
+							},
 						},
 					},
-				},
-			};
+				};
 
-			delete profile.audio.encoder.settings.channels;
-			delete profile.audio.encoder.settings.layout;
-			delete profile.audio.encoder.settings.sampling;
+				delete audio.encoder.settings.channels;
+				delete audio.encoder.settings.layout;
+				delete audio.encoder.settings.sampling;
 
-			profile.audio.filter.settings.aresample.graph = Filters.Audio.Get('aresample').createGraph(profile.audio.filter.settings.aresample.settings);
-			profile.audio.filter.graph = profile.audio.filter.settings.aresample.graph;
+				audio.filter.settings.aresample.graph = Filters.Audio.Get('aresample').createGraph(audio.filter.settings.aresample.settings);
+				audio.filter.graph = audio.filter.settings.aresample.graph;
+			}
 		}
 
 		metadata.version = '1.2.0';
 
 		return metadata;
 	},
+	'1.15.0': audioTracksTransformer,
 };
 
 const mergeIngestMetadata = (metadata, base) => {
@@ -505,7 +538,9 @@ const initEgressMetadata = (initialMetadata) => {
 	return mergeEgressMetadata(initialMetadata);
 };
 
-const egressTransformers = {};
+const egressTransformers = {
+	'1.15.0': audioTracksTransformer,
+};
 
 const mergeEgressMetadata = (metadata, base) => {
 	if (!metadata) {
@@ -586,31 +621,33 @@ const validateProfile = (sources, profile, requireVideo = true) => {
 		}
 	}
 
-	let validAudio = false;
-
-	if (profile.audio.source !== -1 && profile.audio.source < sources.length) {
-		const source = sources[profile.audio.source];
-
-		if (profile.audio.stream !== -1 && profile.audio.stream < source.streams.length) {
-			const stream = source.streams[profile.audio.stream];
-
-			if (stream.index < source.inputs.length) {
-				if (stream.type === 'audio') {
-					validAudio = true;
-				}
-			}
-		}
-	}
-
 	if (validVideo === false) {
 		profile.video.source = -1;
 		profile.video.stream = -1;
 	}
 
-	if (validAudio === false) {
-		profile.audio.source = -1;
-		profile.audio.stream = -1;
+	// Drop audio tracks that reference a source or stream that no longer exists.
+	const validAudioTracks = [];
+
+	for (const track of profile.audio) {
+		if (track.source !== -1 && track.source < sources.length) {
+			const source = sources[track.source];
+
+			if (track.stream !== -1 && track.stream < source.streams.length) {
+				const stream = source.streams[track.stream];
+
+				if (stream.index < source.inputs.length && stream.type === 'audio') {
+					validAudioTracks.push(track);
+					continue;
+				}
+			}
+		}
+
+		track.source = -1;
+		track.stream = -1;
 	}
+
+	profile.audio = validAudioTracks;
 
 	let complete = true;
 
@@ -623,12 +660,41 @@ const validateProfile = (sources, profile, requireVideo = true) => {
 	return complete;
 };
 
+/**
+ * specifierizeAudioOptions appends the output stream index to all audio
+ * stream specifier options (-codec:a -> -codec:a:0, -filter:a -> -filter:a:1,
+ * ...) so that multiple audio tracks can carry their own encoder settings.
+ * Options without an audio specifier are left untouched.
+ *
+ * @param {*} options FFmpeg options of one audio track
+ * @param {*} index Audio track index within the output
+ * @returns The options with stream specifiers
+ */
+const specifierizeAudioOptions = (options, index) => {
+	return options.map((o) => {
+		if (typeof o === 'string' && /:.+:a$/.test(o)) {
+			return o + ':' + index;
+		}
+
+		return o;
+	});
+};
+
 const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 	const source2inputMap = new Map();
 
 	let global = [];
 	const inputs = [];
 	const outputs = [];
+
+	// https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
+	const uniqBy = (a, key) => {
+		return [...new Map(a.map((x) => [key(x), x])).values()];
+	};
+
+	const isActiveAudioTrack = (track) => {
+		return track.encoder.coder !== 'none' && track.source !== -1 && track.stream !== -1;
+	};
 
 	// For each profile get the source and do the proper mapping
 	for (let profile of profiles) {
@@ -677,16 +743,27 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 
 		const options = ['-map', index + ':' + stream.stream, ...local];
 
-		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
-			global = [...global, ...profile.audio.decoder.mapping.global];
+		// Each selected audio track becomes one audio stream of the output. The
+		// order of the tracks is the order of the output audio tracks.
+		const audioTracks = profile.audio.filter(isActiveAudioTrack);
 
-			const source = sources[profile.audio.source];
-			const stream = source.streams[profile.audio.stream];
+		for (let t = 0; t < audioTracks.length; t++) {
+			const track = audioTracks[t];
+
+			global = [...global, ...track.decoder.mapping.global];
+
+			const source = sources[track.source];
+			const stream = source.streams[track.stream];
+
+			if (stream === undefined || stream.index >= source.inputs.length) {
+				continue;
+			}
+
 			const input = source.inputs[stream.index];
 
-			input.options = [...profile.audio.decoder.mapping.local, ...input.options];
+			input.options = [...track.decoder.mapping.local, ...input.options];
 
-			const id = profile.audio.source + ':' + stream.index;
+			const id = track.source + ':' + stream.index;
 
 			if (source2inputMap.has(id) === false) {
 				const i = inputs.push(input);
@@ -695,25 +772,31 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 
 			index = source2inputMap.get(id);
 
-			global = [...global, ...profile.audio.encoder.mapping.global];
+			global = [...global, ...track.encoder.mapping.global];
 
-			const local = profile.audio.encoder.mapping.local.slice();
+			let local = track.encoder.mapping.local.slice();
 
-			if (profile.audio.encoder.coder !== 'copy' && (profile.audio.filter.graph.length !== 0 || profile.audio.encoder.mapping.filter.length !== 0)) {
-				let filter = profile.audio.filter.graph;
-				if (profile.audio.encoder.mapping.filter.length !== 0) {
+			if (track.encoder.coder !== 'copy' && (track.filter.graph.length !== 0 || track.encoder.mapping.filter.length !== 0)) {
+				let filter = track.filter.graph;
+				if (track.encoder.mapping.filter.length !== 0) {
 					if (filter.length !== 0) {
 						filter += ',';
 					}
 
-					filter += profile.audio.encoder.mapping.filter.join(',');
+					filter += track.encoder.mapping.filter.join(',');
 				}
 
 				local.unshift('-filter:a', filter);
 			}
 
+			if (audioTracks.length > 1) {
+				local = specifierizeAudioOptions(local, t);
+			}
+
 			options.push('-map', index + ':' + stream.stream, ...local);
-		} else {
+		}
+
+		if (audioTracks.length === 0) {
 			options.push('-an');
 		}
 
@@ -722,11 +805,6 @@ const createInputsOutputs = (sources, profiles, requireVideo = true) => {
 			options: options,
 		});
 	}
-
-	// https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
-	const uniqBy = (a, key) => {
-		return [...new Map(a.map((x) => [key(x), x])).values()];
-	};
 
 	// global is an array of arrays. Here we remove duplicates and flatten it.
 	global = uniqBy(global, (x) => JSON.stringify(x.sort()));
@@ -769,9 +847,17 @@ const createOutputStreams = (sources, profiles, requireVideo = true) => {
 			streams.push(s);
 		}
 
-		if (profile.audio.encoder.coder !== 'none' && profile.audio.source !== -1 && profile.audio.stream !== -1) {
-			const source = sources[profile.audio.source];
-			const stream = source.streams[profile.audio.stream];
+		for (const track of profile.audio) {
+			if (track.encoder.coder === 'none' || track.source === -1 || track.stream === -1) {
+				continue;
+			}
+
+			const source = sources[track.source];
+			const stream = source.streams[track.stream];
+
+			if (stream === undefined) {
+				continue;
+			}
 
 			const s = initStream({
 				index: 0,
@@ -782,8 +868,8 @@ const createOutputStreams = (sources, profiles, requireVideo = true) => {
 				channels: stream.channels,
 			});
 
-			if (profile.audio.encoder.coder !== 'copy') {
-				const encoder = Coders.Audio.Get(profile.audio.encoder.coder);
+			if (track.encoder.coder !== 'copy') {
+				const encoder = Coders.Audio.Get(track.encoder.coder);
 				if (encoder) {
 					s.codec = encoder.codec;
 				}
@@ -816,6 +902,79 @@ const initSource = (type, initialSource) => {
 	};
 
 	return source;
+};
+
+/**
+ * initAudioTrack normalizes a single audio track of a profile. Each track
+ * selects one source stream ({source, stream}) and defines its own
+ * encoder/decoder/filter.
+ */
+const initAudioTrack = (initialTrack) => {
+	if (!initialTrack) {
+		initialTrack = {};
+	}
+
+	const track = {
+		source: -1,
+		stream: -1,
+		encoder: {},
+		decoder: {},
+		filter: {},
+		...initialTrack,
+	};
+
+	track.encoder = {
+		coder: 'none',
+		settings: {},
+		mapping: {},
+		...track.encoder,
+	};
+
+	// mapping used to be an array for input/output specific options
+	if (Array.isArray(track.encoder.mapping)) {
+		track.encoder.mapping = {
+			global: [],
+			local: track.encoder.mapping,
+			filter: [],
+		};
+	} else {
+		track.encoder.mapping = {
+			global: [],
+			local: [],
+			filter: [],
+			...track.encoder.mapping,
+		};
+	}
+
+	track.decoder = {
+		coder: 'default',
+		settings: {},
+		mapping: {},
+		...track.decoder,
+	};
+
+	if (Array.isArray(track.decoder.mapping)) {
+		track.decoder.mapping = {
+			global: [],
+			local: track.decoder.mapping,
+			filter: [],
+		};
+	} else {
+		track.decoder.mapping = {
+			global: [],
+			local: [],
+			filter: [],
+			...track.decoder.mapping,
+		};
+	}
+
+	track.filter = {
+		graph: '',
+		settings: {},
+		...track.filter,
+	};
+
+	return track;
 };
 
 const initProfile = (initialProfile) => {
@@ -889,68 +1048,33 @@ const initProfile = (initialProfile) => {
 		...profile.video.filter,
 	};
 
-	profile.audio = {
-		source: -1,
-		stream: -1,
-		encoder: {},
-		decoder: {},
-		filter: {},
-		...profile.audio,
-	};
+	// profile.audio is an ordered list of audio tracks since 1.15.0. The
+	// position of a track in the list defines the output audio track order.
+	// A single (legacy) audio entry is wrapped into a one-element list. An
+	// empty list means "no audio".
+	const rawAudio = Array.isArray(initialProfile.audio)
+		? initialProfile.audio[0] !== undefined
+			? initialProfile.audio[0]
+			: {}
+		: initialProfile.audio !== undefined && initialProfile.audio !== null
+			? initialProfile.audio
+			: {};
 
-	profile.audio.encoder = {
-		coder: 'none',
-		settings: {},
-		mapping: {},
-		...profile.audio.encoder,
-	};
-
-	if (Array.isArray(profile.audio.encoder.mapping)) {
-		profile.audio.encoder.mapping = {
-			global: [],
-			local: profile.audio.encoder.mapping,
-			filter: [],
-		};
+	if (Array.isArray(profile.audio)) {
+		profile.audio = profile.audio.map((track) => initAudioTrack(track));
 	} else {
-		profile.audio.encoder.mapping = {
-			global: [],
-			local: [],
-			filter: [],
-			...profile.audio.encoder.mapping,
-		};
+		const audio = initAudioTrack(profile.audio);
+
+		if (audio.source === -1 || audio.stream === -1 || audio.encoder.coder === 'none') {
+			profile.audio = [];
+		} else {
+			profile.audio = [audio];
+		}
 	}
-
-	profile.audio.decoder = {
-		coder: 'default',
-		settings: {},
-		mapping: {},
-		...profile.audio.decoder,
-	};
-
-	if (Array.isArray(profile.audio.decoder.mapping)) {
-		profile.audio.decoder.mapping = {
-			global: [],
-			local: profile.audio.decoder.mapping,
-			filter: [],
-		};
-	} else {
-		profile.audio.decoder.mapping = {
-			global: [],
-			local: [],
-			filter: [],
-			...profile.audio.decoder.mapping,
-		};
-	}
-
-	profile.audio.filter = {
-		graph: '',
-		settings: {},
-		...profile.audio.filter,
-	};
 
 	profile.custom = {
-		selected: profile.audio.source === 1,
-		stream: profile.audio.source === 1 ? -2 : profile.audio.stream,
+		selected: rawAudio.source === 1,
+		stream: rawAudio.source === 1 ? -2 : rawAudio.stream !== undefined ? rawAudio.stream : -1,
 		...profile.custom,
 	};
 
@@ -1040,37 +1164,42 @@ const analyzeStreams = (type, streams) => {
  * @returns A profile
  */
 const preselectProfile = (type, streams, profile, encoders, preselectAudio = true) => {
-	const preselectAudioProfile = (streams, audio) => {
-		audio.stream = -1;
-		audio.encoder.coder = 'none';
+	const makeAudioTrack = (streams, index) => {
+		const audio = initAudioTrack({});
+		audio.stream = index;
+
+		if (streams[index].codec === 'aac' || streams[index].codec === 'mp3') {
+			audio.encoder.coder = 'copy';
+		} else {
+			let coder = Coders.Audio.GetCoderForCodec('aac', encoders.audio);
+			if (coder === null) {
+				coder = Coders.Audio.GetCoderForCodec('mp3', encoders.audio);
+				if (coder === null) {
+					audio.encoder.coder = 'none';
+				} else {
+					audio.encoder.coder = coder.coder;
+				}
+			} else {
+				audio.encoder.coder = coder.coder;
+			}
+		}
+
+		return audio;
+	};
+
+	// Every audio stream of the source becomes one audio track.
+	const preselectAudioTracks = (streams) => {
+		const tracks = [];
 
 		for (let i = 0; i < streams.length; i++) {
 			if (streams[i].type !== 'audio') {
 				continue;
 			}
 
-			audio.stream = i;
-
-			if (streams[i].codec === 'aac' || streams[i].codec === 'mp3') {
-				audio.encoder.coder = 'copy';
-			} else {
-				let coder = Coders.Audio.GetCoderForCodec('aac', encoders.audio);
-				if (coder === null) {
-					coder = Coders.Audio.GetCoderForCodec('mp3', encoders.audio);
-					if (coder === null) {
-						audio.encoder.coder = 'none';
-					} else {
-						audio.encoder.coder = coder.coder;
-					}
-				} else {
-					audio.encoder.coder = coder.coder;
-				}
-			}
-
-			break;
+			tracks.push(makeAudioTrack(streams, i));
 		}
 
-		return audio;
+		return tracks;
 	};
 
 	const isVideoPlausible = (streams, video) => {
@@ -1108,36 +1237,42 @@ const preselectProfile = (type, streams, profile, encoders, preselectAudio = tru
 		return true;
 	};
 
-	const isAudioPlausible = (streams, audio) => {
-		if (audio.stream < 0) {
+	const isAudioPlausible = (streams, tracks) => {
+		if (!Array.isArray(tracks) || tracks.length === 0) {
 			return false;
 		}
 
-		if (audio.stream >= streams.length) {
-			return false;
-		}
-
-		if (streams[audio.stream].type !== 'audio') {
-			return false;
-		}
-
-		if (streams[audio.stream].codec !== 'aac' && streams[audio.stream].codec !== 'mp3') {
-			if (audio.encoder.coder === 'copy') {
+		for (const audio of tracks) {
+			if (audio.stream < 0) {
 				return false;
 			}
-		} else {
-			if (audio.encoder.coder === 'copy') {
-				return true;
+
+			if (audio.stream >= streams.length) {
+				return false;
 			}
-		}
 
-		const coder = Coders.Audio.Get(audio.encoder.coder);
-		if (coder === null) {
-			return false;
-		}
+			if (streams[audio.stream].type !== 'audio') {
+				return false;
+			}
 
-		if (coder.codec !== 'aac' && coder.codec !== 'mp3') {
-			return false;
+			if (streams[audio.stream].codec !== 'aac' && streams[audio.stream].codec !== 'mp3') {
+				if (audio.encoder.coder === 'copy') {
+					return false;
+				}
+			} else {
+				if (audio.encoder.coder === 'copy') {
+					continue;
+				}
+			}
+
+			const coder = Coders.Audio.Get(audio.encoder.coder);
+			if (coder === null) {
+				return false;
+			}
+
+			if (coder.codec !== 'aac' && coder.codec !== 'mp3') {
+				return false;
+			}
 		}
 
 		return true;
@@ -1178,13 +1313,11 @@ const preselectProfile = (type, streams, profile, encoders, preselectAudio = tru
 		// Only select audio stream if explicitely asked to.
 		if (preselectAudio === true) {
 			if (isAudioPlausible(streams, profile.audio) === false) {
-				profile.audio = preselectAudioProfile(streams, profile.audio);
+				profile.audio = preselectAudioTracks(streams);
 
-				if (profile.audio.stream >= 0) {
-					profile.audio.source = 0;
-
+				if (profile.audio.length !== 0) {
 					profile.custom.selected = false;
-					profile.custom.stream = profile.audio.stream;
+					profile.custom.stream = profile.audio[0].stream;
 				} else {
 					profile.custom.selected = false;
 					profile.custom.stream = -1;
@@ -1193,10 +1326,12 @@ const preselectProfile = (type, streams, profile, encoders, preselectAudio = tru
 		}
 	} else if (type === 'audio') {
 		if (isAudioPlausible(streams, profile.audio) === false) {
-			profile.audio = preselectAudioProfile(streams, profile.audio);
+			profile.audio = preselectAudioTracks(streams);
 		}
 
-		profile.audio.source = 1;
+		for (const audio of profile.audio) {
+			audio.source = 1;
+		}
 	}
 
 	return profile;
@@ -1208,18 +1343,24 @@ const cleanupSources = (sources) => {
 
 const cleanupProfile = (profile) => {
 	profile.video.source = 0;
-	profile.audio.source = 0;
 
-	if (profile.custom.selected === true) {
-		profile.audio.source = 1;
+	for (const audio of profile.audio) {
+		audio.source = 0;
+
+		if (profile.custom.selected === true) {
+			audio.source = 1;
+		}
+
+		if (audio.stream === -1) {
+			audio.source = -1;
+		}
 	}
+
+	// Drop tracks without a stream
+	profile.audio = profile.audio.filter((audio) => audio.stream !== -1);
 
 	if (profile.video.stream === -1) {
 		profile.video.source = -1;
-	}
-
-	if (profile.audio.stream === -1) {
-		profile.audio.source = -1;
 	}
 
 	return {
@@ -1277,6 +1418,7 @@ export {
 	createOutputStreams,
 	initSource,
 	initProfile,
+	initAudioTrack,
 	analyzeStreams,
 	preselectProfile,
 	cleanupProfile,

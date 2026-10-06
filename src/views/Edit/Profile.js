@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import WarningIcon from '@mui/icons-material/Warning';
 
 import * as M from '../../utils/metadata';
+import AudioTracks from '../../misc/AudioTracks';
 import BoxText from '../../misc/BoxText';
 import EncodingSelect from '../../misc/EncodingSelect';
 import PaperFooter from '../../misc/PaperFooter';
@@ -145,8 +146,7 @@ export default function Profile(props) {
 				delete props.skills.sources.videoaudio;
 				if (audio.type === '' || audio.type === 'videoaudio') {
 					audio.type = 'noaudio';
-					profile.audio.source = -1;
-					profile.audio.stream = -1;
+					profile.audio = [];
 					profile.custom.selected = false;
 					profile.custom.stream = -1;
 				}
@@ -230,6 +230,20 @@ export default function Profile(props) {
 		});
 	};
 
+	const handleAudioTracks = (tracks) => {
+		const custom = $profile.custom;
+
+		if (custom.selected === false) {
+			custom.stream = tracks.length !== 0 ? tracks[0].stream : -1;
+		}
+
+		setProfile({
+			...$profile,
+			audio: tracks,
+			custom: custom,
+		});
+	};
+
 	const handleFilter = (type) => (filter) => {
 		const profile = $profile[type];
 
@@ -277,32 +291,30 @@ export default function Profile(props) {
 	};
 
 	const handleSourceChange = (type, source) => {
-		const profile = $profile[type];
 		const custom = $profile.custom;
 
 		if (type === 'audio') {
 			if (source === 'noaudio') {
 				custom.selected = false;
 				custom.stream = -1;
-				profile.source = -1;
-				profile.stream = -1;
+				$profile.audio = [];
 			} else if (source === 'videoaudio') {
 				custom.selected = false;
-				profile.source = 0;
 
-				for (let i = 0; i < $sources.video.streams.length; i++) {
-					if ($sources.video.streams[i].type === 'audio') {
-						custom.stream = i;
-						profile.stream = i;
-						break;
-					}
+				// every audio stream of the video source becomes an audio track
+				const updated = M.preselectProfile('audio', $sources.video.streams, {...$profile, audio: []}, props.skills.encoders);
+				$profile.audio = updated.audio;
+
+				for (const audio of $profile.audio) {
+					audio.source = 0;
 				}
+
+				custom.stream = $profile.audio.length !== 0 ? $profile.audio[0].stream : -1;
 			} else {
 				custom.selected = true;
 				custom.stream = -2;
 
-				profile.source = 1;
-				profile.stream = -1;
+				$profile.audio = [];
 			}
 
 			let audio = $sources.audio;
@@ -324,7 +336,6 @@ export default function Profile(props) {
 
 		setProfile({
 			...$profile,
-			[type]: profile,
 			custom: custom,
 		});
 	};
@@ -343,14 +354,10 @@ export default function Profile(props) {
 		}
 	};
 
-	const handleStreamSelect = (type, what) => (stream) => {
+	const handleStreamSelect = (type) => (stream) => {
 		const profile = $profile;
 
 		profile[type].stream = stream;
-
-		if (what === 'custom') {
-			profile.custom.stream = stream;
-		}
 
 		setProfile({
 			...$profile,
@@ -630,33 +637,14 @@ export default function Profile(props) {
 						{$profile.custom.selected === false && $profile.custom.stream >= 0 && (
 							<React.Fragment>
 								<Grid item xs={12}>
-									<StreamSelect
-										type="audio"
+									<AudioTracks
 										streams={$sources.video.streams}
-										selected={$profile.custom.stream}
-										onChange={handleStreamSelect('audio', 'custom')}
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<EncodingSelect
-										type="audio"
-										streams={$sources.video.streams}
-										profile={$profile.audio}
+										tracks={$profile.audio}
 										codecs={['copy', 'aac', 'mp3']}
 										skills={props.skills}
-										onChange={handleEncoding('audio')}
+										onChange={handleAudioTracks}
 									/>
 								</Grid>
-								{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && $profile.audio.source !== -1 && (
-									<Grid item xs={12}>
-										<FilterSelect
-											type="audio"
-											profile={$profile.audio}
-											availableFilters={props.skills.filter}
-											onChange={handleFilter('audio')}
-										/>
-									</Grid>
-								)}
 							</React.Fragment>
 						)}
 						{$profile.custom.selected === true && (
@@ -706,14 +694,6 @@ export default function Profile(props) {
 										)}
 										{$audioProbe.status === 'success' && (
 											<React.Fragment>
-												<Grid item xs={12}>
-													<StreamSelect
-														type="audio"
-														streams={$sources.audio.streams}
-														selected={$profile.audio.stream}
-														onChange={handleStreamSelect('audio')}
-													/>
-												</Grid>
 												<Grid item xs={12} align="right">
 													<Typography>
 														<Trans>
@@ -724,25 +704,14 @@ export default function Profile(props) {
 													</Typography>
 												</Grid>
 												<Grid item xs={12}>
-													<EncodingSelect
-														type="audio"
+													<AudioTracks
 														streams={$sources.audio.streams}
-														profile={$profile.audio}
+														tracks={$profile.audio}
 														codecs={['copy', 'aac', 'mp3']}
 														skills={props.skills}
-														onChange={handleEncoding('audio')}
+														onChange={handleAudioTracks}
 													/>
 												</Grid>
-												{$profile.audio.encoder.coder !== 'none' && $profile.audio.encoder.coder !== 'copy' && (
-													<Grid item xs={12}>
-														<FilterSelect
-															type="audio"
-															profile={$profile.audio}
-															availableFilters={props.skills.filter}
-															onChange={handleFilter('audio')}
-														/>
-													</Grid>
-												)}
 											</React.Fragment>
 										)}
 									</React.Fragment>

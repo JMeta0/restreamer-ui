@@ -1749,11 +1749,26 @@ class Restreamer {
 							['hls_delete_threshold', '4'],
 							['hls_segment_filename', hls_segment_filename],
 						];
-					case 7:
-						// fix Malformed AAC bitstream detected for hls version 7
-						if (output.options.includes('-codec:a') && output.options.includes('copy')) {
+					case 7: {
+						// fix Malformed AAC bitstream detected for hls version 7.
+						// Each copied audio stream needs its own bitstream filter
+						// (with multiple audio tracks the options carry stream
+						// specifiers like -codec:a:1).
+						const copiedAudio = [];
+						for (let i = 0; i < output.options.length - 1; i++) {
+							const m = /^-codec:a(:(\d+))?$/.exec(output.options[i]);
+							if (m !== null && output.options[i + 1] === 'copy') {
+								copiedAudio.push(m[2] !== undefined ? ':' + m[2] : '');
+							}
+						}
+
+						if (copiedAudio.length !== 0) {
 							if (!tee_muxer) {
-								output.options.push('-bsf:a', 'aac_adtstoasc');
+								for (const spec of copiedAudio) {
+									if (!output.options.includes('-bsf:a' + spec)) {
+										output.options.push('-bsf:a' + spec, 'aac_adtstoasc');
+									}
+								}
 							}
 							hls_aac_adtstoasc = true;
 						}
@@ -1769,6 +1784,7 @@ class Restreamer {
 							['hls_fmp4_init_resend', '1'],
 							['hls_segment_filename', hls_segment_filename],
 						];
+					}
 					// case 3
 					default:
 						return [
