@@ -181,6 +181,12 @@ export default function AudioTracks(props) {
 
 	const maxTracks = props.maxTracks > 0 ? props.maxTracks : 0;
 
+	// An audio stream can only be selected once. Disable adding another track
+	// when every available audio stream is already used, instead of silently
+	// creating a duplicate track.
+	const usedStreams = new Set(tracks.map((t) => t.stream));
+	const hasUnusedStream = (props.streams || []).some((stream, index) => stream.type === 'audio' && !usedStreams.has(index));
+
 	return (
 		<Grid container spacing={2}>
 			{tracks.length === 0 && (
@@ -200,7 +206,7 @@ export default function AudioTracks(props) {
 			)}
 			{warnings}
 			<Grid item xs={12}>
-				<Button variant="outlined" color="default" disabled={maxTracks > 0 && tracks.length >= maxTracks} onClick={handleAdd}>
+				<Button variant="outlined" color="default" disabled={(maxTracks > 0 && tracks.length >= maxTracks) || !hasUnusedStream} onClick={handleAdd}>
 					<Trans>Add audio track</Trans>
 				</Button>
 			</Grid>

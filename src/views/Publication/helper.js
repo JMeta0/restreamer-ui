@@ -384,7 +384,12 @@ export function preselectProfile(profile, type, streams, codecs, skills) {
 export function selectTrackEncoder(track, type, streams, index, codecs, skills) {
 	const encoders = skills.encoders[type];
 
-	track.source = 0;
+	// Keep the track's source (0 = main/video source, 1 = dedicated audio
+	// source). Only default to the main source when it is not set yet.
+	if (!(track.source >= 0)) {
+		track.source = 0;
+	}
+
 	track.stream = index;
 	track.encoder.coder = 'none';
 

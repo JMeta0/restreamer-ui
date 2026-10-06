@@ -672,7 +672,9 @@ const validateProfile = (sources, profile, requireVideo = true) => {
  */
 const specifierizeAudioOptions = (options, index) => {
 	return options.map((o) => {
-		if (typeof o === 'string' && /:.+:a$/.test(o)) {
+		// Only option names carry a stream specifier (e.g. -codec:a, -b:a,
+		// -filter:a). Values never match this pattern.
+		if (typeof o === 'string' && /^-[^:]*:a$/.test(o)) {
 			return o + ':' + index;
 		}
 
@@ -1399,6 +1401,10 @@ const transformMetadata = (metadata, targetVersion, transformers) => {
 	for (let t of tlist) {
 		metadata = transformers[t](metadata);
 	}
+
+	// Stamp the final, requested version. Transformers may set an intermediate
+	// version; the metadata must end up at the target after all of them ran.
+	metadata.version = targetVersion;
 
 	return metadata;
 };
